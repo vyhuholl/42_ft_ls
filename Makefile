@@ -22,10 +22,8 @@ FLAGS := -Wall -Werror -Wextra -g
 VPATH := . srcs
 
 SRCS =	main.c \
-		parse_input.c \
-		support_part_1.c \
-		print_long.c \
-		reader.c
+		parsing.c \
+		auxillary.c \
 
 OBJECTS = $(SRCS:.c=.o)
 

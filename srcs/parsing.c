@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsimonis <tsimonis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,12 +12,12 @@
 
 #include "ft_ls.h"
 
-int		main(int argc, char **argv)
+int[10] *ft_parse_options(int argc, char **argv)
 {
-	t_file	*files;
-	int[10]	flags
-	int		i;
+    int[10] flags;
+    int     i;
 
-	flags = ft_parse_options(argc, argv);
-	return (0);
+    i = 1;
+    while (i < argc && )
+    return (flags)
 }
