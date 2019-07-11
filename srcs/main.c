@@ -16,8 +16,8 @@ int		main(int argc, char **argv)
 {
 	t_file	*files;
 	int		*flags;
-	int		i;
 
 	flags = ft_parse_options(argc, argv);
+	files = ft_create_file_list(argc, argv);
 	return (0);
 }
