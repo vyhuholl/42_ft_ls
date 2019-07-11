@@ -12,12 +12,13 @@
 
 #include "ft_ls.h"
 
-int[10] *ft_parse_options(int argc, char **argv)
+int *ft_parse_options(int argc, char **argv)
 {
-    int[10] flags;
-    int     i;
+    int *flags;
+    int i;
 
     i = 1;
+    flags = (char*)malloc(sizeof(char) * 10 + 1);
     while (i < argc && )
     return (flags)
 }

@@ -24,10 +24,6 @@
 # include <grp.h>
 # include <uuid/uuid.h>
 
-/*
-** full flag list: adfGglRrtu
-*/
-
 typedef struct	s_file
 {
 	mode_t	mode;
@@ -42,6 +38,7 @@ typedef struct	s_file
 	t_file	*next;
 }				t_file;
 
-int[10]	ft_parse_options(int argc, char **argv);
+int ft_index(char c, char *str);
+int	*ft_parse_options(int argc, char **argv);
 
 #endif
