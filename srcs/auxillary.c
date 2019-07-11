@@ -12,6 +12,10 @@
 
 #include "ft_ls.h"
 
+/*
+** An auxillary function for indexing.
+*/
+
 int ft_index(char c, char *str)
 {
     int i;
@@ -26,7 +30,27 @@ int ft_index(char c, char *str)
     return (-1);
 }
 
+/*
+** A function to handle errors.
+** Prints usage if an invalid option was used
+** and error message otherwise.
+*/
+
 int ft_raise_error(char *str, int error)
 {
+    if (error == USAGE)
+    {
+        ft_putstr("ft_ls: illegal option -- ");
+        ft_putchar(*str);
+        ft_putchar('\n');
+        ft_putstr("usage: ft_ls [-adfGglRrtu] [file ...]");
+    }
+    else
+    {
+        ft_putstr(str);
+        ft_putstr(": ");
+        ft_putstr(strerror(errno));
+    }
+    exit(EXIT_FAILURE);
     return (0);
 }

@@ -23,6 +23,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <uuid/uuid.h>
+# include <string.h>
 
 typedef struct	s_file
 {
