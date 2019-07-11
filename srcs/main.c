@@ -12,25 +12,7 @@
 
 #include "ft_ls.h"
 
-// void	get_files_in_dir()
-// {
-// 	;
-// }
-
-// void	sort_files_in_dir()
-// {
-// 	;
-// }
-
 int		main(int argc, char **argv)
 {
-	t_input		*input;
-
-	input = parse_input(argc, argv);
-	if (input->flags[1]) // R
-	{
-		;
-	}
-	print_l_flag(input->paths->filepath, input->paths->buf);
 	return (0);
 }
