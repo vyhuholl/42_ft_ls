@@ -19,6 +19,9 @@ int *ft_parse_options(int argc, char **argv)
 
     i = 1;
     flags = (char*)malloc(sizeof(char) * 10 + 1);
-    while (i < argc && )
+    while (i < argc && argv[i][0] == '-' && argv[i][1])
+    {
+        
+    }
     return (flags)
 }

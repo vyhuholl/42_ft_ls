@@ -25,3 +25,8 @@ int ft_index(char c, char *str)
     }
     return (-1);
 }
+
+int ft_raise_error(char *str, int error)
+{
+    return (0);
+}

@@ -39,6 +39,7 @@ typedef struct	s_file
 }				t_file;
 
 int ft_index(char c, char *str);
+int ft_raise_error(char *str, int error);
 int	*ft_parse_options(int argc, char **argv);
 
 #endif
