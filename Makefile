@@ -6,7 +6,7 @@
 #    By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 17:02:44 by tsimonis          #+#    #+#              #
-#    Updated: 2019/07/12 05:01:17 by sghezn           ###   ########.fr        #
+#    Updated: 2019/07/12 07:01:21 by sghezn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,6 @@ FLAGS := -Wall -Werror -Wextra -g
 VPATH := . srcs
 
 SRCS =	main.c \
-		parsing.c \
-		file_list.c \
-		print.c \
 
 OBJECTS = $(SRCS:.c=.o)
 
