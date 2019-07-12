@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 23:29:57 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 03:27:19 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 04:48:17 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char    *ft_get_path(char *name)
 ** A function that creates a new file, given name, path and stat.
 */
 
-t_file  *ft_create_new_file(char *name, char *path, t_stat *stat)
+t_file  *ft_create_new_file(char *name, t_stat *stat)
 {
     t_file  *file;
 
@@ -35,7 +35,6 @@ t_file  *ft_create_new_file(char *name, char *path, t_stat *stat)
     file->size = stat->st_size;
     file->atime = stat->st_atime;
     file->mtime = stat->st_mtime;
-    file->path = ft_get_path(file);
     file->next = NULL;
     return (file);
 }
@@ -45,19 +44,19 @@ t_file  *ft_create_new_file(char *name, char *path, t_stat *stat)
 ** or, in case list didn't exist, creates a new list.
 */
 
-int     ft_add_new_file(char *name, char *path, t_file **list)
+int     ft_add_new_file(char *name, t_file **list)
 {
     t_stat  *stat;
 
     if (lstat(name, stat) == -1)
         return (-1);
     if (!*list)
-        *list = ft_create_new_file(name, path, stat);
+        *list = ft_create_new_file(name, stat);
     else
     {
         while ((*list)->next)
             list = &((*list)->next);
-        (*list)->next = ft_create_new_file(name, path, stat);
+        (*list)->next = ft_create_new_file(name, stat);
     }
     return (1);
 }
