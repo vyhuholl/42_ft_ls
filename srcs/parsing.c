@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:48:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 04:56:17 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 06:52:38 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** An auxillary function for indexing.
 */
 
-int ft_index(char c, char *str)
+int     ft_index(char c, char *str)
 {
     int i;
 
@@ -36,7 +36,7 @@ int ft_index(char c, char *str)
 ** and error message otherwise.
 */
 
-int ft_raise_error(char *str, int error)
+int f   t_raise_error(char *str, int error)
 {
     if (error == USAGE)
     {
@@ -56,10 +56,10 @@ int ft_raise_error(char *str, int error)
 }
 
 /*
-** Finds all flags.
+** A function which finds all flags.
 */
 
-int *ft_parse_options(int argc, char **argv)
+int     *ft_parse_options(int argc, char **argv)
 {
     int *flags;
     int i;
@@ -78,4 +78,21 @@ int *ft_parse_options(int argc, char **argv)
         i++;
     }
     return (flags)
+}
+
+/*
+** A function which frees a file list.
+*/
+
+void    ft_free_list(t_file *list)
+{
+    t_file  *ptr;
+
+    while (list)
+    {
+        ptr = list->next;
+        free(list->name);
+        free(list)
+        list = ptr
+    }
 }

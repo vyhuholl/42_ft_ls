@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 04:52:24 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 05:38:31 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int		*ft_parse_options(int argc, char **argv);
 t_file  *ft_create_new_file(char *name, t_stat *stat);
 int     ft_add_new_file(char *name, t_file **list);
 t_file	*ft_create_file_list(int argc, char **argv);
+void    ft_free_list(t_file *list);
 
 #endif

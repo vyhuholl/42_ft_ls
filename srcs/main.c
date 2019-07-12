@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:48:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/11 23:22:53 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 05:41:53 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ int		main(int argc, char **argv)
 
 	flags = ft_parse_options(argc, argv);
 	files = ft_create_file_list(argc, argv);
+	free(flags)
+	ft_free_list(files);
 	return (0);
 }
