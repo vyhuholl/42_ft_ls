@@ -6,36 +6,25 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:48:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 08:51:08 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 10:49:34 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_flags		ft_parse_flags(int argc, char **argv)
+t_options	*ft_parse_options(int argc, char **argv)
 {
-	t_flags	flags;
-	int		i;
+	t_options	*options;
+	int			i;
 
-	ft_memset(&flags, 0, sizeof(flags));
-	i = 0;
-	while (i < argc)
-	{
-		if argv[i][0] == '-':
-			ft_add_params(argv[i], flags);
-		else if (ft_is_file(argv[i]) == 1)
-			ft_add_file(argv[i], flags);
-		else if (ft_is_dir(argv[i]) == 1)
-			ft_add_dir(argv[i], flags);
-		i++;
-	}
-	return (flags);
+	options = (t_options*)malloc(sizeof(t_options) + 1)
+	return (options);
 }
 
 int			main(int argc, char **argv)
 {
-	t_flags	flags;
+	t_options	*options;
 
-	flags = ft_parse_flags(argc, argv)
+	options = ft_parse_options(argc, argv);
 	return (0);
 }

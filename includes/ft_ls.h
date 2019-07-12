@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 09:04:13 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 10:31:55 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,12 @@
 # include <sys/stat.h>
 # include <sys/dirent.h>
 
-typedef struct	s_flags
+typedef struct	s_options
 {
-	int		long_format;
-	int		recursive;
-	int		all_files;
-	int		reversed_sort;
-	int		time_m_sort;
-	int		time_a_sort;
-	int		unsorted;
-	int		group_name;
-	int		dir_plain;
-	int		colors;
+	int		*flags;
 	char	**dirs;
 	char	**files;
-}				t_flags;
+}				t_options;
 
 typedef struct	s_file
 {
@@ -51,11 +42,6 @@ typedef struct	s_dir
 	t_dir	*next;
 }				t_dir;
 
-void		ft_add_params(char *params, t_flags *flags);
-void		ft_add_file(char *filename, t_flags *flags);
-void		ft_add_dir(char *filename, t_flags *flags);
-int			ft_is_file(char *filename);
-int			ft_is_dir(char *filename);
-t_flags		ft_parse_flags(int argc, char **argv);
+t_options	*ft_parse_options(int argc, char **argv);
 
 #endif
