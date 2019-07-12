@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 23:29:57 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 00:00:06 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 03:13:41 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,24 @@ int     ft_add_new_file(char *name, char *path, t_file **list)
     return (1);
 }
 
+/*
+** A function that creates a file list from ls arguments.
+*/
+
 t_file	*ft_create_file_list(int argc, char **argv)
 {
-    
+    t_file  *file_list;
+    int     i;
+
+    i = 1;
+    file_list = NULL;
+    while (i < argc && argv[i][0] == '-')
+        i++;
+    while (i < argc)
+    {
+        if (add_new_file(argv[i], "", file_list) == -1)
+            ft_raise_error(argv[i], ERRNO);
+        i++;
+    }
+    return (file_list);
 }
