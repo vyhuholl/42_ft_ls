@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 07:03:08 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 08:23:22 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,39 @@
 # define FT_LS_H
 
 # include "libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <dirent.h>
-# include <time.h>
-# include <sys/types.h>
 # include <sys/stat.h>
-# include <pwd.h>
-# include <grp.h>
-# include <uuid/uuid.h>
-# include <string.h>
+# include <sys/dirent.h>
+
+typedef struct	s_flags
+{
+	int	long_format;
+	int	recursive;
+	int	all_files;
+	int	reversed_sort;
+	int	time_m_sort;
+	int	time_a_sort;
+	int	unsorted;
+	int	group_name;
+	int	dir_plain;
+	int	colors;
+}				t_flags;
+
+typedef struct	s_file
+{
+	char	*name;
+	char	*path;
+	char	*username;
+	char	*groupname;
+	t_stat	stats;
+	t_file	*next;
+}				t_file;
+
+typedef struct	s_dir
+{
+	char	*name;
+	t_stat	stats;
+	t_file	*files;
+	t_dir	*next;
+}				t_dir;
 
 #endif
