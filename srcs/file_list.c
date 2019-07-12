@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 23:29:57 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 03:13:41 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 03:27:19 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ t_file  *ft_create_new_file(char *name, char *path, t_stat *stat)
     return (file);
 }
 
+/*
+** A function that adds a file to the list
+** or, in case list didn't exist, creates a new list.
+*/
+
 int     ft_add_new_file(char *name, char *path, t_file **list)
 {
     t_stat  *stat;
@@ -50,7 +55,9 @@ int     ft_add_new_file(char *name, char *path, t_file **list)
         *list = ft_create_new_file(name, path, stat);
     else
     {
-        while ()
+        while ((*list)->next)
+            list = &((*list)->next);
+        (*list)->next = ft_create_new_file(name, path, stat);
     }
     return (1);
 }
