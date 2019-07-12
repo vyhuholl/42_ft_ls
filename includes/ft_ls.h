@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 08:23:22 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 08:37:09 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@
 
 typedef struct	s_flags
 {
-	int	long_format;
-	int	recursive;
-	int	all_files;
-	int	reversed_sort;
-	int	time_m_sort;
-	int	time_a_sort;
-	int	unsorted;
-	int	group_name;
-	int	dir_plain;
-	int	colors;
+	int		long_format;
+	int		recursive;
+	int		all_files;
+	int		reversed_sort;
+	int		time_m_sort;
+	int		time_a_sort;
+	int		unsorted;
+	int		group_name;
+	int		dir_plain;
+	int		colors;
+	char	**dirs;
+	char	**files;
 }				t_flags;
 
 typedef struct	s_file
@@ -48,5 +50,7 @@ typedef struct	s_dir
 	t_file	*files;
 	t_dir	*next;
 }				t_dir;
+
+t_flags		ft_parse_flags(int argc, char **argv);
 
 #endif
