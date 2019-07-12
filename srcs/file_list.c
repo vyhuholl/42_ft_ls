@@ -6,19 +6,14 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 23:29:57 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 04:48:17 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/12 04:52:02 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-char    *ft_get_path(char *name)
-{
-
-}
-
 /*
-** A function that creates a new file, given name, path and stat.
+** A function that creates a new file, given filename and stat.
 */
 
 t_file  *ft_create_new_file(char *name, t_stat *stat)
