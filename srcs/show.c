@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:59:45 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 23:22:43 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 23:44:25 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,24 @@ t_format    *ft_compute_format(t_file *files)
     return (format);
 }
 
-void        ft_show_file(t_file *file, t_flags *flags)
+void        ft_show_file(t_file *file, t_flags *flags, t_format *format)
 {
     if (flags->long_format == 1)
-        ft_show_long_format(file, flags);
+        ft_print_long(file, flags, format);
     else
-        ft_printf("%s\n", file->name);   
+        ft_printf("%s\n", file->name);
 }
 
 void        ft_show_files(t_file *files, t_flags *flags)
 {
+    t_format    *format;
+
+    format = ft_compute_format(files);
+    if (flags->long_format && files)
+        ft_printf("total %d\n", format->total);
     while (files)
     {
-        ft_show_file(file, flags);
+        ft_show_file(file, flags, format);
         files = files->next;
     }
 }

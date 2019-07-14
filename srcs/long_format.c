@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 20:47:15 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 22:03:58 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 23:48:47 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,28 @@ void    ft_printmod(t_file *file)
         ft_putchar((file->stats->st_mode & S_IXUSR) ? 'x' : '-');
 }
 
-void    ft_print_long()
+void    ft_print_long(t_file *file, t_flags *flags, t_format *format)
 {
-    
+    char    link[256];
+    ssize_t ret;
+
+    ft_printmod(file);
+    ft_printf("%*d %-*s %-*s ", format->nlink_len + 1,
+    file->stat->st.nlink, format->user_len + 1,
+    file->username, format->group_len + 1, file->groupname);
+    if (!(S_ISBLK(file->stat->st_mode) || S_ISCHR(file->stat->st_mode)))
+        ft_printf("%*d ", format->size_len, file->stat->st_size);
+    else
+        ft_printf("%*d, %*d ", format->major_len,
+        (int)major(file->stat->st_rdev), format->minor_len,
+        (int)minor(file->stat->st_rdev));
+    ft_print_time(file->stat->st_mtime);
+    if (S_ISLNK(file->stat->st_mode))
+    {
+        ret = readlink(file->path, link, 256);
+        link[ret] = '\0';
+        ft_printf("%s -> %s\n", file->name, link);
+    }
+    else
+        ft_printf("%s\n", file->name);
 }
