@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 16:03:51 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 16:28:24 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void    	ft_add_file(t_file *files, char *name, char *path);
 void    	ft_swap_files(t_file *file_1, t_file *file_2);
 void    	ft_sort_files(t_file *files, int (*cmp)(char*, char*));
 void    	ft_reverse_files(t_file *files);
+void    	ft_sort_filelist(t_file *files_list, t_flags *flags);
 void    	ft_print_files(t_list *files, t_flags *flags);
 void		ft_print_all(t_options *options);
 void    	ft_free_list(t_list *list);

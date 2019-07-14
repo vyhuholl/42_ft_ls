@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 15:25:17 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 16:20:53 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 16:28:29 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,16 @@ void    ft_reverse_files(t_file *files)
         curr = next;
     }
     files = prev;
+}
+
+void    ft_sort_filelist(t_file *files_list, t_flags *flags)
+{
+    if (flags->unsorted != 1)
+        ft_sort_files(files_list, ft_strcmp());
+    if (flags->time_a == 1)
+        ft_sort_files(files_list, ft_time_a_diff());
+    else if (flags->time_m == 1)
+        ft_sort_files(files_list, ft_time_m_diff());
+    if (flags->reversed == 1)
+        ft_reverse_files(files_list);
 }
