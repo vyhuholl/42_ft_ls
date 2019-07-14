@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 09:11:49 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 15:00:53 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 15:22:39 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 char    *ft_username(uid_t uid)
 {
-    
+    struct passwd   *pwd;
+
+    if (!(pwd = getpwuid(uid)))
+        return (ft_itoa(uid));
+    return (ft_strdup(pwd->pw_name));
 }
 
 char    *ft_groupname(gid_t gid)
 {
-    
+    struct group    grp;
+
+    if (!(grp = getgrid(gid)))
+        return (ft_itoa(gid));
+    return (ft_strdup(grp->gr_name));
 }
 
 void    ft_add_file(t_file *files, char *name, char *path)
@@ -31,8 +39,20 @@ void    ft_add_file(t_file *files, char *name, char *path)
     file = (t_file*)malloc(sizeof(t_file) + 1);
     file->name = ft_strdup(name);
     file->path = ft_strjoin(path, name);
-    lstat(name, stat)
+    lstat(name, stat);
     file->stat = stat;
+    file->username = ft_username(stat.st_uid);
+    file->groupname = ft_groupname(stat.st_gid);
+    file->next = NULL;
+    if (!files)
+        files = file;
+    else 
+    {
+        ptr = files;
+        while (ptr->next)
+            ptr = ptr->next;
+        ptr->next = file;
+    }
 }
 
 int     ft_is_file_or_dir(char *filename)
