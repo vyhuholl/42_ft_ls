@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 09:11:49 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 20:56:53 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 21:02:40 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ void    ft_add_file(t_file *files, char *name, char *path)
 
 char    ft_filetype(t_file *file)
 {
-    if (S_ISBLK(file->stat->mode))
+    if (S_ISBLK(file->stat->st_mode))
         return ('b');
-    else if (S_ISCHR(file->stat->mode))
+    else if (S_ISCHR(file->stat->st_mode))
         return ('c');
-    else if (S_ISDIR(file->stat->mode))
+    else if (S_ISDIR(file->stat->st_mode))
         return ('d');
-    else if (S_ISFIFO(file->stat->mode))
+    else if (S_ISFIFO(file->stat->st_mode))
         return ('p');
-    else if (S_ISLNK(file->stat->mode))
+    else if (S_ISLNK(file->stat->st_mode))
         return ('l');
-    else if (S_ISSOCK(file->stat->mode))
+    else if (S_ISSOCK(file->stat->st_mode))
         return ('s');
     return ('-');
 }

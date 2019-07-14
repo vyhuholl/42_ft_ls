@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 10:09:17 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 19:37:56 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 21:03:58 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void    ft_options_error(char option)
 {
-    ft_putstr_fd("ft_ls: illegal option -- ", 2);
-    ft_putchar_fd(option, 2)
-    ft_putchar_fd('\n', 2);
-    ft_putstr_fd("usage: ft_ls [-lRart] [file ...]\n", 2);
+    ft_putstr("ft_ls: illegal option -- ");
+    ft_putchar(option)
+    ft_putchar('\n');
+    ft_putstr("usage: ft_ls [-lRart] [file ...]\n");
     exit(EXIT_FAILURE);
 }
 
 void    ft_opendir_error(char *dir)
 {
-    ft_putstr_fd("ft_ls: ", 2);
-    ft_putstr_fd(dir, 2);
-    ft_putstr_fd(": Permission denied\n", 2);
+    ft_putstr("ft_ls: ");
+    ft_putstr(dir);
+    ft_putstr(": Permission denied\n");
     exit(EXIT_FAILURE);
 }
