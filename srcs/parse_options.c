@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 12:48:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 10:06:56 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 10:08:45 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ void    ft_add_file(char *filename, t_options *options)
     else
     {
         ptr = options->files;
+        while (ptr->next)
+            ptr = ptr->next;
+        ptr->next = ft_lstnew(filename, sizeof(filename));
+    }
+}
+
+void    ft_add_dir(char *filename, t_options *options)
+{
+    t_list  *ptr;
+
+    if (!options->dirs)
+        options->dirs = ft_lstnew(filename, sizeof(filename));
+    else
+    {
+        ptr = options->dirs;
         while (ptr->next)
             ptr = ptr->next;
         ptr->next = ft_lstnew(filename, sizeof(filename));
