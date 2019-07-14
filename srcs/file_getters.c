@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 09:11:49 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 15:22:39 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 15:30:58 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void    ft_add_file(t_file *files, char *name, char *path)
     file->path = ft_strjoin(path, name);
     lstat(name, stat);
     file->stat = stat;
-    file->username = ft_username(stat.st_uid);
-    file->groupname = ft_groupname(stat.st_gid);
+    file->username = ft_username(stat->st_uid);
+    file->groupname = ft_groupname(stat->st_gid);
     file->next = NULL;
     if (!files)
         files = file;
