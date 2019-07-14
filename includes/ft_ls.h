@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 21:20:48 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 22:08:35 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,17 @@ typedef struct	s_dir
 	t_file	*files;
 	t_dir	*next;
 }				t_dir;
+
+typedef struct	s_format
+{
+	int	total;
+	int	nlink_len;
+	int	user_len;
+	int	group_len;
+	int	size_len;
+	int	major_len;
+	int	minor_len;
+}				t_format;
 
 char    	ft_filetype(t_file *file);
 int 		ft_is_file_or_dir(char *filename);

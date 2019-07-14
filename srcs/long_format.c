@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 20:47:15 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 21:53:06 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 22:03:58 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,9 @@ void    ft_printmod(t_file *file)
         ft_putchar((file->stats->st_mode & S_IXOTH) ? 's' : 'S');
     else
         ft_putchar((file->stats->st_mode & S_IXUSR) ? 'x' : '-');
+}
+
+void    ft_print_long()
+{
+    
 }
