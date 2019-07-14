@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 10:15:45 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 16:28:38 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 16:57:36 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,23 @@ void    ft_print_files(t_list *files_list, t_flags *flags)
     files = NULL;
     while (files_list)
     {
-        ft_add_file(files, files_list->data, path);
+        if (flags->all_files || files_list->data[0] != '.')
+            ft_add_file(files, files_list->data, path);
         files_list = files_list->next;
     }
     ft_sort_filelist(files, flags);
+}
+
+void    ft_print_dir(char *path, t_flags *flags)
+{
+    struct dirent   *entry;
+    DIR             *dir;
+    t_file          *files;
+    t_dir           *dirs;
+
+    files = NULL;
+    if (!(dir = opendir(path)))
+        ft_opendir_error(path);
 }
 
 void	ft_print_all(t_options *options)

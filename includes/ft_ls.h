@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 16:28:24 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 16:59:05 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_flags
 
 typedef struct	s_options
 {
+	char	*path;
 	t_flags	*flags;
 	t_list	*dirs;
 	t_list	*files;
@@ -69,6 +70,7 @@ typedef struct	s_dir
 int 		ft_is_file_or_dir(char *filename);
 void    	ft_add_filename(char *filename, t_options *options);
 void    	ft_add_dirname(char *filename, t_options *options);
+void    	ft_opendir_error(char *dir);
 void    	ft_options_error(char option);
 void    	ft_add_option(char c, t_flags *flags);
 void    	ft_add_options(char *flags, t_options *options);
@@ -85,6 +87,7 @@ void    	ft_sort_files(t_file *files, int (*cmp)(char*, char*));
 void    	ft_reverse_files(t_file *files);
 void    	ft_sort_filelist(t_file *files_list, t_flags *flags);
 void    	ft_print_files(t_list *files, t_flags *flags);
+void    	ft_print_dir(char *path, t_flags *flags);
 void		ft_print_all(t_options *options);
 void    	ft_free_list(t_list *list);
 
