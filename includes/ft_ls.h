@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 16:59:05 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 17:55:30 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct	s_file
 typedef struct	s_dir
 {
 	char	*name;
-	char	*path;
 	t_stat	stat;
 	t_file	*files;
 	t_dir	*next;
@@ -88,6 +87,7 @@ void    	ft_reverse_files(t_file *files);
 void    	ft_sort_filelist(t_file *files_list, t_flags *flags);
 void    	ft_print_files(t_list *files, t_flags *flags);
 void    	ft_print_dir(char *path, t_flags *flags);
+void    	ft_recur(char *path, t_dir *dir, t_flags *flags);
 void		ft_print_all(t_options *options);
 void    	ft_free_list(t_list *list);
 
