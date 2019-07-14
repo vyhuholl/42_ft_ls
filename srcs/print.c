@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 10:15:45 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 14:09:06 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 14:56:33 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void    ft_print_files(t_list *files_list, t_flags *flags)
     t_file  *files;
     char    *path;
 
-    path = ft_strdup("");
+    path = ft_strdup("/");
     files = NULL;
     while (files_list)
     {
-        ft_add_file(&files, files_list->data, path);
+        ft_add_file(files, files_list->data, path);
         files_list = files_list->next;
     }
 }
