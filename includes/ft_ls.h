@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 09:41:51 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 10:00:12 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 typedef struct	s_options
 {
 	int		*flags;
-	char	**dirs;
-	char	**files;
+	t_list	*dirs;
+	t_list	*files;
 }				t_options;
 
 typedef struct	s_file
