@@ -6,11 +6,17 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:59:45 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 22:49:59 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 22:53:17 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void        ft_compute_single_format(t_file *file, t_format *format)
+{
+    format->total += file->stat->st_blocks;
+    
+}
 
 t_format    *ft_compute_format(t_file *files)
 {

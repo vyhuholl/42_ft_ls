@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 09:11:49 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 21:02:40 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 22:53:01 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ int     ft_is_file_or_dir(char *filename)
     ssize_t ret;
 
     lstat(filename, &stat);
-    if (S_ISREG(stat.st_mode))
+    if (S_ISREG(stat->st_mode))
         return (1);
-    else if (S_ISDIR(stat.st_mode))
+    else if (S_ISDIR(stat->st_mode))
         return (2);
-    else if (S_ISLNK(stat.st_mode))
+    else if (S_ISLNK(stat->st_mode))
     {
         ret = readlink(filename, link, 256);
         link[ret] = '\0';
