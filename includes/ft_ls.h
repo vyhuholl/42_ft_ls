@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 12:43:35 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 13:19:24 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ void    	ft_options_error(char option);
 void    	ft_add_option(char c, t_flags *flags);
 void    	ft_add_options(char *flags, t_options *options);
 t_options	*ft_parse_options(int argc, char **argv);
+int     	ft_time_a_diff(char *file_1, char *file_2);
+int     	ft_time_m_diff(char *file_1, char *file_2);
+void    	ft_sort_list(t_list *list, int (*cmp)(char*, char*));
 void    	ft_sort(t_options *options);
-void		ft_print_files(t_list *files, char *flags);
 void		ft_print_all(t_options *options);
 void    	ft_free_list(t_list *list);
 
