@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 10:31:55 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 09:04:07 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct	s_dir
 	t_dir	*next;
 }				t_dir;
 
+int			ft_get_index(char *str, char c);
+void    	ft_add_options(char *flags, t_options *options);
 t_options	*ft_parse_options(int argc, char **argv);
 
 #endif

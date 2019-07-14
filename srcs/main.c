@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:48:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/12 11:03:09 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 08:59:36 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_options	*ft_parse_options(int argc, char **argv)
 	int			i;
 
 	options = (t_options*)malloc(sizeof(t_options) + 1);
-	flags = (int*)malloc(sizeof(int) * 8 + 1);
+	flags = (int*)malloc(sizeof(int) * 10 + 1);
 	options->flags = flags;
 	i = 1;
 	while (i < argc)
