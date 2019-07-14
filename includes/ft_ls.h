@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 09:15:09 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 09:36:38 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_dir
 	t_dir	*next;
 }				t_dir;
 
-int 		ft_is_file(char *filename);
+int 		ft_is_file_or_dir(char *filename);
 void    	ft_options_error(char option);
 int			ft_get_index(char *str, char c);
 void    	ft_add_options(char *flags, t_options *options);
