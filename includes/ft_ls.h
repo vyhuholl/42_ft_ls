@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 17:55:30 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 19:36:52 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 # define FT_LS_H
 
 # include "libft.h"
-# include <grp.h>
 # include <pwd.h>
 # include <stdint.h>
 # include <stdlib.h>
-# include <sys/acl.h>
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/dirent.h>
-# include <sys/xattr.h>
 # include <time.h>
 # include <unistd.h>
 
@@ -33,11 +30,6 @@ typedef struct	s_flags
 	int	all_files;
 	int	reversed;
 	int	time_m;
-	int	time_a;
-	int	unsorted;
-	int	groupname;
-	int	dirs_as_files;
-	int	colors;
 }				t_flags;
 
 typedef struct	s_options
@@ -74,12 +66,10 @@ void    	ft_options_error(char option);
 void    	ft_add_option(char c, t_flags *flags);
 void    	ft_add_options(char *flags, t_options *options);
 t_options	*ft_parse_options(int argc, char **argv);
-int     	ft_time_a_diff(char *file_1, char *file_2);
 int     	ft_time_m_diff(char *file_1, char *file_2);
 void    	ft_sort_list(t_list *list, int (*cmp)(char*, char*));
 void    	ft_sort(t_options *options);
 char    	*ft_username(uid_t uid);
-char    	*ft_groupname(gid_t gid);
 void    	ft_add_file(t_file *files, char *name, char *path);
 void    	ft_swap_files(t_file *file_1, t_file *file_2);
 void    	ft_sort_files(t_file *files, int (*cmp)(char*, char*));
@@ -89,6 +79,8 @@ void    	ft_print_files(t_list *files, t_flags *flags);
 void    	ft_print_dir(char *path, t_flags *flags);
 void    	ft_recur(char *path, t_dir *dir, t_flags *flags);
 void		ft_print_all(t_options *options);
+void    	ft_show_files(t_files *files, t_flags *flags);
+void    	ft_show_dir(t_dir *dir, t_flags *flags);
 void    	ft_free_list(t_list *list);
 
 #endif

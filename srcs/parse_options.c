@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 12:48:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 14:12:12 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 19:37:41 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@ void    	ft_add_option(char c, t_flags *flags)
         flags->reversed = 1;
     else if (c == 't')
         flags->time_m = 1;
-    else if (c == 'u')
-        flags->time_a = 1;
-    else if (c == 'f')
-        flags->unsorted = 1;
-    else if (c == 'g')
-        flags->groupname = 1;
-    else if (c == 'd')
-        flags->dirs_as_files = 1;
-    else if (c == 'G')
-        flags->colors = 1;
     else
         ft_options_error(c);
 }

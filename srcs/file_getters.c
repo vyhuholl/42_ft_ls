@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 09:11:49 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 15:30:58 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 19:37:18 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,6 @@ char    *ft_username(uid_t uid)
     return (ft_strdup(pwd->pw_name));
 }
 
-char    *ft_groupname(gid_t gid)
-{
-    struct group    grp;
-
-    if (!(grp = getgrid(gid)))
-        return (ft_itoa(gid));
-    return (ft_strdup(grp->gr_name));
-}
-
 void    ft_add_file(t_file *files, char *name, char *path)
 {
     t_file  *ptr;
@@ -42,7 +33,6 @@ void    ft_add_file(t_file *files, char *name, char *path)
     lstat(name, stat);
     file->stat = stat;
     file->username = ft_username(stat->st_uid);
-    file->groupname = ft_groupname(stat->st_gid);
     file->next = NULL;
     if (!files)
         files = file;
