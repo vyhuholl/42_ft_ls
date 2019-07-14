@@ -6,11 +6,27 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 12:48:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 09:11:17 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 09:50:12 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void    ft_add_file(char *filename, t_options *options)
+{
+    t_files *ptr;
+    t_file   *file;
+
+    if (!options->files)
+        options->files = ft_new_file(filename);
+    else
+    {
+        ptr = options->files;
+        while (ptr->next)
+            ptr = ptr->next;
+        ptr->next = ft_new_file(filename);
+    }
+}
 
 int     ft_get_index(char *str, char c)
 {
