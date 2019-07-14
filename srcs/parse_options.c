@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 12:48:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 10:52:57 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 12:46:36 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,30 @@ void    ft_add_dir(char *filename, t_options *options)
         ft_lstadd(options->dirs, new);
 }
 
-int     ft_get_index(char *str, char c)
+void    	ft_add_option(char c, t_flags *flags)
 {
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == c)
-            return i
-        i++;
-    }
-    return (-1);
+    if (c == 'l')
+        flags->long_format = 1;
+    else if (c == 'R')
+        flags->recursive = 1;
+    else if (c == 'a')
+        flags->all_files = 1;
+    else if (c == 'r')
+        flags->reversed = 1;
+    else if (c == 't')
+        flags->time_m = 1;
+    else if (c == 'u')
+        flags->time_a = 1;
+    else if (c == 'f')
+        flags->unsorted = 1;
+    else if (c == 'g')
+        flags->groupname = 1;
+    else if (c == 'd')
+        flags->dirs_as_files = 1;
+    else if (c == 'G')
+        flags->colors = 1;
+    else
+        ft_options_error(c);
 }
 
 void    ft_add_options(char *flags, t_options *options)
@@ -56,10 +68,7 @@ void    ft_add_options(char *flags, t_options *options)
     i = 1;
     while (flags[i])
     {
-        index = ft_get_index("lRartufgdG", flags[i]);
-        if (index == -1)
-            ft_options_error(flags[i]);
-        options->flags[index] = 1;
+        ft_add_option(flags[i], options->flags);
         i++;
     }
 }
