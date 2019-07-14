@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:48:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 14:46:33 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 02:35:41 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			main(int argc, char **argv)
 	ft_print_all(options);
 	ft_free_list(options->files);
 	ft_free_list(options->dirs);
+	ft_memdel((void**)&options->path);
 	ft_memdel((void**)&options->flags);
 	ft_memdel((void**)&options);
 	return (0);

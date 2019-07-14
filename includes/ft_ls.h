@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 23:29:30 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 02:56:37 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct	s_file
 typedef struct	s_dir
 {
 	char	*name;
-	t_stat	stat;
 	t_file	*files;
 	t_dir	*next;
 }				t_dir;
@@ -103,5 +102,7 @@ void    	ft_print_time(time_t *time);
 void    	ft_printmod(t_file *file);
 void    	ft_print_long(t_file *file, t_flags *flags, t_format *format);
 void    	ft_free_list(t_list *list);
+void    	ft_free_file(t_file *file);
+void    	ft_free_dir(t_dir *dir);
 
 #endif

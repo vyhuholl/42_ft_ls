@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 10:15:45 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 18:02:03 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 02:38:44 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void    ft_print_files(t_list *files_list, t_flags *flags)
     }
     ft_sort_filelist(files, flags);
     ft_show_files(files, flags);
+    ft_free_files(files);
 }
 
 void    ft_print_dir(char *path, t_flags *flags)
@@ -52,6 +53,7 @@ void    ft_print_dir(char *path, t_flags *flags)
     ft_show_dir(dirs, flags);
     if (flags->recursive == 1)
         ft_recur(path, dirs, flags);
+    ft_free_dir(dirs);
 }
 
 void    ft_recur(char *path, t_dir *dir, t_flags *flags)
