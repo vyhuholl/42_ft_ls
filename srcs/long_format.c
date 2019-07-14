@@ -6,11 +6,19 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 20:47:15 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 21:17:37 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 21:53:06 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void    ft_print_time(time_t *time)
+{
+    char    *time_str;
+
+    time_str = ctime(time) + 4;
+    ft_printf((" %.12s ", time_str));
+}
 
 void    ft_printmod(t_file *file)
 {
