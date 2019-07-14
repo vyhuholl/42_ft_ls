@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 12:48:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 10:08:45 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 10:52:57 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,24 @@
 
 void    ft_add_file(char *filename, t_options *options)
 {
-    t_list  *ptr;
+    t_list  *new;
 
+    new = ft_lstnew(filename, sizeof(filename));
     if (!options->files)
-        options->files = ft_lstnew(filename, sizeof(filename));
+        options->files = new;
     else
-    {
-        ptr = options->files;
-        while (ptr->next)
-            ptr = ptr->next;
-        ptr->next = ft_lstnew(filename, sizeof(filename));
-    }
+        ft_lstadd(options->files, new);
 }
 
 void    ft_add_dir(char *filename, t_options *options)
 {
-    t_list  *ptr;
+    t_list  *new;
 
+    new = ft_lstnew(filename, sizeof(filename));
     if (!options->dirs)
-        options->dirs = ft_lstnew(filename, sizeof(filename));
+        options->dirs = new;
     else
-    {
-        ptr = options->dirs;
-        while (ptr->next)
-            ptr = ptr->next;
-        ptr->next = ft_lstnew(filename, sizeof(filename));
-    }
+        ft_lstadd(options->dirs, new);
 }
 
 int     ft_get_index(char *str, char c)
