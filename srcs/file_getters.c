@@ -6,13 +6,18 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 09:11:49 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 13:29:19 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 14:11:15 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int ft_is_file_or_dir(char *filename)
+void    ft_add_file(t_file *files, char *name, char *path)
+{
+    
+}
+
+int     ft_is_file_or_dir(char *filename)
 {
     t_stat  stat;
     char    link[256];

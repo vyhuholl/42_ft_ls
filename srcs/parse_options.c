@@ -6,13 +6,13 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 12:48:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 12:46:36 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 14:12:12 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void    ft_add_file(char *filename, t_options *options)
+void    ft_add_filename(char *filename, t_options *options)
 {
     t_list  *new;
 
@@ -23,7 +23,7 @@ void    ft_add_file(char *filename, t_options *options)
         ft_lstadd(options->files, new);
 }
 
-void    ft_add_dir(char *filename, t_options *options)
+void    ft_add_dirname(char *filename, t_options *options)
 {
     t_list  *new;
 

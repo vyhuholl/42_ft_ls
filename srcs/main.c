@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:48:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 12:24:32 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 14:12:24 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_options	*ft_parse_options(int argc, char **argv)
 		if (argv[i][0] == '-')
 			ft_add_options(argv[i], options);
 		else if (ft_is_file_or_dir(argv[i]) == 1)
-			ft_add_file(argv[i], options);
+			ft_add_filename(argv[i], options);
 		else if (ft_is_file_or_dir(argv[i]) == 2)
-			ft_add_dir(argv[i], options);
+			ft_add_dirname(argv[i], options);
 	}
 	if (!options->files && !options->dirs)
 		ft_add_dir(".", options)

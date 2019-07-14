@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 11:25:57 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 13:32:27 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 14:09:45 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ void    ft_sort_list(t_list *list, int (*cmp)(char*, char*))
 
 void    ft_sort(t_options *options)
 {
+    if (options->flags->unsorted != 1)
+    {
+        ft_sort_list(options->files, ft_strcmp());
+        ft_sort_list(options->dirs, ft_strcmp());
+    }
     if (options->flags->time_a == 1)
     {
         ft_sort_list(options->files, ft_time_a_diff());
@@ -70,11 +75,6 @@ void    ft_sort(t_options *options)
     {
         ft_sort_list(options->files, ft_time_m_diff());
         ft_sort_list(options->dirs, ft_time_m_diff());
-    }
-    else if (options->flags->unsorted != 1)
-    {
-        ft_sort_list(options->files, ft_strcmp());
-        ft_sort_list(options->dirs, ft_strcmp());
     }
     if (options->flags->reversed == 1)
     {
