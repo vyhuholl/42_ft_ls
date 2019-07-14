@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 20:37:57 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 20:51:16 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 # include "libft.h"
 # include <grp.h>
 # include <pwd.h>
-# include <stdint.h>
 # include <stdlib.h>
-# include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/dirent.h>
 # include <time.h>
@@ -59,6 +57,7 @@ typedef struct	s_dir
 	t_dir	*next;
 }				t_dir;
 
+char    	ft_filetype(t_file *file);
 int 		ft_is_file_or_dir(char *filename);
 void    	ft_add_filename(char *filename, t_options *options);
 void    	ft_add_dirname(char *filename, t_options *options);

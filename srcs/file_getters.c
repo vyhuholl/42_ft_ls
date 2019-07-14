@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 09:11:49 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 20:37:39 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 20:56:53 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,23 @@ void    ft_add_file(t_file *files, char *name, char *path)
     }
 }
 
+char    ft_filetype(t_file *file)
+{
+    if (S_ISBLK(file->stat->mode))
+        return ('b');
+    else if (S_ISCHR(file->stat->mode))
+        return ('c');
+    else if (S_ISDIR(file->stat->mode))
+        return ('d');
+    else if (S_ISFIFO(file->stat->mode))
+        return ('p');
+    else if (S_ISLNK(file->stat->mode))
+        return ('l');
+    else if (S_ISSOCK(file->stat->mode))
+        return ('s');
+    return ('-');
+}
+
 int     ft_is_file_or_dir(char *filename)
 {
     t_stat  stat;
@@ -69,7 +86,7 @@ int     ft_is_file_or_dir(char *filename)
     else if (S_ISLNK(stat.st_mode))
     {
         ret = readlink(filename, link, 256);
-        link[ret] = '\0'
+        link[ret] = '\0';
         return (ft_is_file_or_dir(link));
     }
     return (0);

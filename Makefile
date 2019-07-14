@@ -6,7 +6,7 @@
 #    By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 17:02:44 by tsimonis          #+#    #+#              #
-#    Updated: 2019/07/14 18:00:10 by sghezn           ###   ########.fr        #
+#    Updated: 2019/07/14 20:48:05 by sghezn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS =	main.c \
 		sort.c \
 		sort_files.c \
 		show.c \
+		long_format.c \
 
 OBJECTS = $(SRCS:.c=.o)
 
