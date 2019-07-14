@@ -6,7 +6,7 @@
 #    By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 17:02:44 by tsimonis          #+#    #+#              #
-#    Updated: 2019/07/12 10:29:46 by sghezn           ###   ########.fr        #
+#    Updated: 2019/07/14 09:21:41 by sghezn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ VPATH := . srcs
 
 SRCS =	main.c \
 		errors.c \
+		parse_options.c \
+		file_getters.c \
 
 OBJECTS = $(SRCS:.c=.o)
 
