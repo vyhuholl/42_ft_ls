@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 22:58:36 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/14 23:05:58 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct	s_format
 	int	size_len;
 	int	major_len;
 	int	minor_len;
+	int	name_len;
 }				t_format;
 
 int 		ft_max(int x, int y);
