@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 12:48:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 19:37:41 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:40:39 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    ft_add_filename(char *filename, t_options *options)
     if (!options->files)
         options->files = new;
     else
-        ft_lstadd(options->files, new);
+        ft_lstadd(&options->files, new);
 }
 
 void    ft_add_dirname(char *filename, t_options *options)
@@ -31,7 +31,7 @@ void    ft_add_dirname(char *filename, t_options *options)
     if (!options->dirs)
         options->dirs = new;
     else
-        ft_lstadd(options->dirs, new);
+        ft_lstadd(&options->dirs, new);
 }
 
 void    	ft_add_option(char c, t_flags *flags)
@@ -53,7 +53,6 @@ void    	ft_add_option(char c, t_flags *flags)
 void    ft_add_options(char *flags, t_options *options)
 {
     int i;
-    int index;
 
     i = 1;
     while (flags[i])
