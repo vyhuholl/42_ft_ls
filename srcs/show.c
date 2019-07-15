@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:59:45 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 04:32:37 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 04:36:23 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_len    *ft_compute_len(t_file *files)
 void        ft_show_file(t_file *file, t_flags *flags, t_len *len)
 {
     if (flags->long_format == 1)
-        ft_print_long(file, flags, len);
+        ft_print_long(file, len);
     else
         ft_printf("%s\n", file->name);
 }
