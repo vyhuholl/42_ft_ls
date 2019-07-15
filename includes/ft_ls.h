@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:36:11 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 04:12:03 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define FT_LS_H
 
 # include "libft.h"
+# include <dirent.h>
 # include <grp.h>
 # include <pwd.h>
 # include <stdlib.h>
 # include <sys/stat.h>
-# include <sys/dirent.h>
+# include <sys/types.h>
 # include <time.h>
 # include <unistd.h>
 
