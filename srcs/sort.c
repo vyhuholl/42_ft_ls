@@ -6,13 +6,13 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 11:25:57 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:45:16 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 04:24:52 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int     ft_time_m_diff(char *file_1, char *file_2)
+int     ft_time_m_diff(const char *file_1, const char *file_2)
 {
     struct stat stat_1;
     struct stat stat_2;
@@ -25,7 +25,7 @@ int     ft_time_m_diff(char *file_1, char *file_2)
         return (1);
 }
 
-void    ft_sort_list(t_list *list, int (*cmp)(char*, char*))
+void    ft_sort_list(t_list *list, int (*cmp)(const char*, const char*))
 {
     t_list  *temp;
     char    *swap;
@@ -33,11 +33,11 @@ void    ft_sort_list(t_list *list, int (*cmp)(char*, char*))
     temp = list;
     while (list->next)
     {
-        if (((*cmp)(list->data, list->next->data)) > 0)
+        if (((*cmp)(list->content, list->next->content)) > 0)
         {
-            swap = list->data;
-            list->data = list->next->data;
-            list->next->data = swap;
+            swap = list->content;
+            list->content = list->next->content;
+            list->next->content = swap;
             list = temp;
         }
         else
@@ -50,17 +50,17 @@ void    ft_sort(t_options *options)
 {
     if (options->flags->time_m == 1)
     {
-        ft_sort_list(options->files, ft_time_m_diff());
-        ft_sort_list(options->dirs, ft_time_m_diff());
+        ft_sort_list(options->files, &ft_time_m_diff);
+        ft_sort_list(options->dirs, &ft_time_m_diff);
     }
     else
     {
-        ft_sort_list(options->files, ft_strcmp());
-        ft_sort_list(options->dirs, ft_strcmp());
+        ft_sort_list(options->files, &ft_strcmp);
+        ft_sort_list(options->dirs, &ft_strcmp);
     }
     if (options->flags->reversed == 1)
     {
-        ft_lstreverse(options->files);
-	    ft_lstreverse(options->dirs);
+        ft_lstreverse(&options->files);
+	    ft_lstreverse(&options->dirs);
     }
 }

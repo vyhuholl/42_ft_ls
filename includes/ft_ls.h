@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 04:12:03 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 04:27:04 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ void    	ft_options_error(char option);
 void    	ft_add_option(char c, t_flags *flags);
 void    	ft_add_options(char *flags, t_options *options);
 t_options	*ft_parse_options(int argc, char **argv);
-int     	ft_time_m_diff(char *file_1, char *file_2);
-void    	ft_sort_list(t_list *list, int (*cmp)(char*, char*));
+int     	ft_time_m_diff(const char *file_1, const char *file_2);
+void    	ft_sort_list(t_list *list, int (*cmp)(const char*, const char*));
 void    	ft_sort(t_options *options);
 char    	*ft_username(uid_t uid);
 char    	*ft_groupname(gid_t gid);
 void    	ft_add_file(t_file *files, char *name, char *path);
 void    	ft_swap_files(t_file *file_1, t_file *file_2);
-void    	ft_sort_files(t_file *files, int (*cmp)(char*, char*));
+void    	ft_sort_files(t_file *files, int (*cmp)(const char*, const char*));
 void    	ft_reverse_files(t_file *files);
 void    	ft_sort_filelist(t_file *files_list, t_flags *flags);
 void    	ft_print_files(t_list *files, t_flags *flags);

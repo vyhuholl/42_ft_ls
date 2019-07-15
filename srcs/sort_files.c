@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 15:25:17 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:14:57 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 04:27:20 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void    ft_swap_files(t_file *file_1, t_file *file_2)
     file_2->stats = temp->stats;
 }
 
-void    ft_sort_files(t_file *files, int (*cmp)(char*, char*))
+void    ft_sort_files(t_file *files, int (*cmp)(const char*, const char*))
 {
     t_file  *temp;
 
@@ -72,9 +72,9 @@ void    ft_reverse_files(t_file *files)
 void    ft_sort_filelist(t_file *files_list, t_flags *flags)
 {
     if (flags->time_m == 1)
-        ft_sort_files(files_list, ft_time_m_diff());
+        ft_sort_files(files_list, &ft_time_m_diff);
     else
-        ft_sort_files(files_list, ft_strcmp());
+        ft_sort_files(files_list, &ft_strcmp);
     if (flags->reversed == 1)
         ft_reverse_files(files_list);
 }
