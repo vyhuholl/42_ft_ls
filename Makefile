@@ -6,11 +6,9 @@
 #    By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 17:02:44 by tsimonis          #+#    #+#              #
-#    Updated: 2019/07/14 22:55:10 by sghezn           ###   ########.fr        #
+#    Updated: 2019/07/15 06:31:12 by sghezn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-.PHONY: all clean fclean re rebuild_lib re1 fclean1
 
 NAME = ft_ls
 
@@ -47,17 +45,11 @@ $(OBJECTS): %.o: %.c
 	gcc $(FLAGS) -c $< -o $@ $(addprefix -I,$(INCLUDES))
 
 clean:
-	rm -f $(OBJECTS)
+	/bin/rm -rf $(OBJECTS)
+	$(MAKE) -C libft clean
 
 fclean: clean
-	rm -f $(NAME)
+	/bin/rm -rf $(NAME)
+	$(MAKE) -C libft fclean
 
 re: fclean all
-
-rebuild_lib:
-	$(MAKE) re -C libft
-
-re1: rebuild_lib fclean all
-
-fclean1: fclean
-	$(MAKE) fclean -C libft
