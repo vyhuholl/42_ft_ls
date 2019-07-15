@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:59:45 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:33:51 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:46:27 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void        ft_compute_single_len(t_file *file, t_len *len)
 {
-    len->total += file->stats->st_blocks;
-    len->nlink_len = ft_max(len->nlink_len, ft_nbrlen(file->stats->st_nlink));
+    len->total += file->stats.st_blocks;
+    len->nlink_len = ft_max(len->nlink_len, ft_nbrlen(file->stats.st_nlink));
     len->user_len = ft_max(len->user_len, (int)ft_strlen(file->username));
     len->group_len = ft_max(len->group_len, (int)ft_strlen(file->groupname));
-    len->size_len = ft_max(len->size_len, ft_nbrlen((int)file->stats->st_size));
+    len->size_len = ft_max(len->size_len, ft_nbrlen((int)file->stats.st_size));
     if (ft_filetype(file) == 'b' || ft_filetype(file) == 'c')
     {
-        len->major_len = ft_max(len->major_len, ft_nbrlen((int)major(file->stats->st_rdev) + 1));
-        len->minor_len = ft_max(len->minor_len, ft_nbrlen((int)minor(file->stats->st_rdev) + 1));
+        len->major_len = ft_max(len->major_len, ft_nbrlen((int)major(file->stats.st_rdev) + 1));
+        len->minor_len = ft_max(len->minor_len, ft_nbrlen((int)minor(file->stats.st_rdev) + 1));
     }
     len->name_len = ft_max(len->name_len, (int)ft_strlen(file->name));
 }

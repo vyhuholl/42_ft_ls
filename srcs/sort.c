@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 11:25:57 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:13:55 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:45:16 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int     ft_time_m_diff(char *file_1, char *file_2)
 
     lstat(file_1, &stat_1);
     lstat(file_2, &stat_2);
-    if (stat_1->st_mtimespec.tv_sec <= stat_2.st_mtimespec.tv_sec)
+    if (stat_1.st_mtimespec.tv_sec <= stat_2.st_mtimespec.tv_sec)
         return (-1);
     else
         return (1);

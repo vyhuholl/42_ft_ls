@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 09:11:49 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:09:01 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:44:52 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void    ft_add_file(t_file *files, char *name, char *path)
     file = (t_file*)malloc(sizeof(t_file) + 1);
     file->name = ft_strdup(name);
     file->path = ft_strjoin(path, name);
-    lstat(name, stats);
+    lstat(name, &stats);
     file->stats = stats;
-    file->username = ft_username(stats->st_uid);
-    file->groupname = ft_groupname(stats->st_gid);
+    file->username = ft_username(stats.st_uid);
+    file->groupname = ft_groupname(stats.st_gid);
     file->next = NULL;
     if (!files)
         files = file;
@@ -57,17 +57,17 @@ void    ft_add_file(t_file *files, char *name, char *path)
 
 char    ft_filetype(t_file *file)
 {
-    if (S_ISBLK(file->stats->st_mode))
+    if (S_ISBLK(file->stats.st_mode))
         return ('b');
-    else if (S_ISCHR(file->stats->st_mode))
+    else if (S_ISCHR(file->stats.st_mode))
         return ('c');
-    else if (S_ISDIR(file->stats->st_mode))
+    else if (S_ISDIR(file->stats.st_mode))
         return ('d');
-    else if (S_ISFIFO(file->stats->st_mode))
+    else if (S_ISFIFO(file->stats.st_mode))
         return ('p');
-    else if (S_ISLNK(file->stats->st_mode))
+    else if (S_ISLNK(file->stats.st_mode))
         return ('l');
-    else if (S_ISSOCK(file->stats->st_mode))
+    else if (S_ISSOCK(file->stats.st_mode))
         return ('s');
     return ('-');
 }
@@ -79,11 +79,11 @@ int     ft_is_file_or_dir(char *filename)
     ssize_t     ret;
 
     lstat(filename, &stats);
-    if (S_ISREG(stats->st_mode))
+    if (S_ISREG(stats.st_mode))
         return (1);
-    else if (S_ISDIR(stats->st_mode))
+    else if (S_ISDIR(stats.st_mode))
         return (2);
-    else if (S_ISLNK(stats->st_mode))
+    else if (S_ISLNK(stats.st_mode))
     {
         ret = readlink(filename, link, 256);
         link[ret] = '\0';
