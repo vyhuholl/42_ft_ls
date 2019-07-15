@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:48:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 02:35:41 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:38:24 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ t_options	*ft_parse_options(int argc, char **argv)
 			ft_add_dirname(argv[i], options);
 	}
 	if (!options->files && !options->dirs)
-		ft_add_dir(".", options)
-	ft_lstreverse(options->files);
-	ft_lstreverse(options->dirs);
+		ft_add_dirname(".", options);
+	ft_lstreverse(&options->files);
+	ft_lstreverse(&options->dirs);
 	ft_sort(options);
 	return (options);
 }

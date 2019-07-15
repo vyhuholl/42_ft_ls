@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:29:04 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:36:11 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void		ft_print_all(t_options *options);
 void        ft_compute_single_len(t_file *file, t_len *len);
 t_format    *ft_compute_len(t_file *files);
 void        ft_show_file(t_file *file, t_flags *flags, t_len *len);
-void    	ft_show_files(t_files *files, t_flags *flags);
+void    	ft_show_files(t_file *files, t_flags *flags);
 void    	ft_show_dir(t_dir *dir, t_flags *flags);
 void    	ft_print_time(time_t *time);
 void    	ft_printmod(t_file *file);
