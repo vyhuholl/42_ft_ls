@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:06:16 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:26:18 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ typedef struct	s_options
 
 typedef struct	s_file
 {
-	char		*name;
-	char		*path;
-	char		*username;
-	char		*groupname;
-	struct stat	stats;
-	t_file	*next;
+	char			*name;
+	char			*path;
+	char			*username;
+	char			*groupname;
+	struct stat		stats;
+	struct s_file	*next;
 }				t_file;
 
 typedef struct	s_dir
 {
-	char	*name;
-	t_file	*files;
-	t_dir	*next;
+	char			*name;
+	t_file			*files;
+	struct s_dir	*next;
 }				t_dir;
 
 typedef struct	s_format
