@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 15:25:17 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/14 16:28:29 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:14:57 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void    ft_swap_files(t_file *file_1, t_file *file_2)
     temp->path = file_1->path;
     temp->username = file_1->username;
     temp->groupname = file_1->groupname;
-    temp->stat = file_1->stat;
+    temp->stats = file_1->stats;
     file_1->name = file_2->name;
     file_1->path = file_2->path;
     file_1->username = file_2->username;
     file_1->groupname = file_2->groupname;
-    file_1->stat = file_2->stat;
+    file_1->stats = file_2->stats;
     file_2->name = temp->name;
     file_2->path = temp->path;
     file_2->username = temp->username;
     file_2->groupname = temp->groupname;
-    file_2->stat = temp->stat;
+    file_2->stats = temp->stats;
 }
 
 void    ft_sort_files(t_file *files, int (*cmp)(char*, char*))
@@ -71,12 +71,10 @@ void    ft_reverse_files(t_file *files)
 
 void    ft_sort_filelist(t_file *files_list, t_flags *flags)
 {
-    if (flags->unsorted != 1)
-        ft_sort_files(files_list, ft_strcmp());
-    if (flags->time_a == 1)
-        ft_sort_files(files_list, ft_time_a_diff());
-    else if (flags->time_m == 1)
+    if (flags->time_m == 1)
         ft_sort_files(files_list, ft_time_m_diff());
+    else
+        ft_sort_files(files_list, ft_strcmp());
     if (flags->reversed == 1)
         ft_reverse_files(files_list);
 }

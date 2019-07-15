@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 10:35:11 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 02:58:24 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:09:31 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void    ft_free_file(t_file *file)
         ft_memdel((void**)&files->path);
         ft_memdel((void**)&files->username);
         ft_memdel((void**)&files->groupname);
-        ft_memdel((void**)&files->stat);
+        ft_memdel((void**)&files->stats);
         ft_memdel((void**)&files);
         files = next;
     }
