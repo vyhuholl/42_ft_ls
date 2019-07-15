@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 17:59:45 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:46:27 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 04:32:37 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_len    *ft_compute_len(t_file *files)
     t_file  *ptr;
 
     ptr = files;
+    len = (t_len*)malloc(sizeof(t_len) + 1);
     ft_memset(len, 0, sizeof(t_len));
     while (ptr)
     {
@@ -61,7 +62,7 @@ void        ft_show_files(t_file *files, t_flags *flags)
         ft_printf("total %d\n", len->total);
     while (files)
     {
-        ft_show_file(file, flags, len);
+        ft_show_file(files, flags, len);
         files = files->next;
     }
 }
@@ -69,6 +70,6 @@ void        ft_show_files(t_file *files, t_flags *flags)
 void        ft_show_dir(t_dir *dir, t_flags *flags)
 {
     ft_printf("%s:\n", dir->name);
-    ft_show_files(dir->files);
+    ft_show_files(dir->files, flags);
     ft_printf("\n");
 }
