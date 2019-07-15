@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 10:15:45 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 02:38:44 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:51:40 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    ft_print_files(t_list *files_list, t_flags *flags)
     files = NULL;
     while (files_list)
     {
-        if (flags->all_files || files_list->data[0] != '.')
+        if (flags->all_files || files_list->content[0] != '.')
             ft_add_file(files, files_list->data, path);
         files_list = files_list->next;
     }
