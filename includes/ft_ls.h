@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:26:18 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:29:04 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct	s_dir
 	struct s_dir	*next;
 }				t_dir;
 
-typedef struct	s_format
+typedef struct	s_len
 {
 	int	total;
 	int	nlink_len;
@@ -66,7 +66,7 @@ typedef struct	s_format
 	int	major_len;
 	int	minor_len;
 	int	name_len;
-}				t_format;
+}				t_len;
 
 int 		ft_max(int x, int y);
 int 		ft_nbrlen(int n);
@@ -93,14 +93,14 @@ void    	ft_print_files(t_list *files, t_flags *flags);
 void    	ft_print_dir(char *path, t_flags *flags);
 void    	ft_recur(char *path, t_dir *dir, t_flags *flags);
 void		ft_print_all(t_options *options);
-void        ft_compute_single_format(t_file *file, t_format *format);
-t_format    *ft_compute_format(t_file *files);
-void        ft_show_file(t_file *file, t_flags *flags, t_format *format);
+void        ft_compute_single_len(t_file *file, t_len *len);
+t_format    *ft_compute_len(t_file *files);
+void        ft_show_file(t_file *file, t_flags *flags, t_len *len);
 void    	ft_show_files(t_files *files, t_flags *flags);
 void    	ft_show_dir(t_dir *dir, t_flags *flags);
 void    	ft_print_time(time_t *time);
 void    	ft_printmod(t_file *file);
-void    	ft_print_long(t_file *file, t_flags *flags, t_format *format);
+void    	ft_print_long(t_file *file, t_flags *flags, t_len *len);
 void    	ft_free_list(t_list *list);
 void    	ft_free_file(t_file *file);
 void    	ft_free_dir(t_dir *dir);

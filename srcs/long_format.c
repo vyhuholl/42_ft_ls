@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 20:47:15 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:16:15 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/15 03:34:54 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,20 @@ void    ft_printmod(t_file *file)
         ft_putchar((file->stats->st_mode & S_IXUSR) ? 'x' : '-');
 }
 
-void    ft_print_long(t_file *file, t_flags *flags, t_format *format)
+void    ft_print_long(t_file *file, t_flags *flags, t_len *len)
 {
     char    link[256];
     ssize_t ret;
 
     ft_printmod(file);
-    ft_printf("%*d %-*s %-*s ", format->nlink_len + 1,
-    file->stats->st.nlink, format->user_len + 1,
-    file->username, format->group_len + 1, file->groupname);
+    ft_printf("%*d %-*s %-*s ", len->nlink_len + 1,
+    file->stats->st.nlink, len->user_len + 1,
+    file->username, len->group_len + 1, file->groupname);
     if (!(S_ISBLK(file->stats->st_mode) || S_ISCHR(file->stats->st_mode)))
-        ft_printf("%*d ", format->size_len, file->stats->st_size);
+        ft_printf("%*d ", len->size_len, file->stats->st_size);
     else
-        ft_printf("%*d, %*d ", format->major_len,
-        (int)major(file->stats->st_rdev), format->minor_len,
+        ft_printf("%*d, %*d ", len>major_len,
+        (int)major(file->stats->st_rdev), len->minor_len,
         (int)minor(file->stats->st_rdev));
     ft_print_time(file->stats->st_mtime);
     if (S_ISLNK(file->stats->st_mode))
