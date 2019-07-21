@@ -5,62 +5,99 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/14 11:25:57 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 04:24:52 by sghezn           ###   ########.fr       */
+/*   Created: 2019/07/20 16:54:08 by sghezn            #+#    #+#             */
+/*   Updated: 2019/07/21 13:14:23 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int     ft_time_m_diff(const char *file_1, const char *file_2)
-{
-    struct stat stat_1;
-    struct stat stat_2;
+/*
+** An auxillary function swapping two items in a t_file structure.
+*/
 
-    lstat(file_1, &stat_1);
-    lstat(file_2, &stat_2);
-    if (stat_1.st_mtimespec.tv_sec <= stat_2.st_mtimespec.tv_sec)
-        return (-1);
-    else
-        return (1);
+t_file  *ft_files_swap(t_file *file_1, t_file *file_2)
+{
+    file_1->next = file_2->next;
+    file_2->next = file_1;
+    return (file_2);
 }
 
-void    ft_sort_list(t_list *list, int (*cmp)(const char*, const char*))
-{
-    t_list  *temp;
-    char    *swap;
+/*
+** A function which sorts a t_file structure according to a function.
+*/
 
-    temp = list;
-    while (list->next)
+t_file  *ft_sort_list(t_file *list, int (*cmp)(t_file*, t_file*))
+{
+    if (!list)
+        return (NULL);
+    if (list->next && (*cmp)(list, list->next) > 0)
     {
-        if (((*cmp)(list->content, list->next->content)) > 0)
+        list = ft_files_swap(list, list->next);
+        list->next = ft_sort_list(list->next, cmp);
+    }
+    return (list);
+}
+
+/*
+** A function which reverts a t_file structure.
+*/
+
+t_file  *ft_reverse_list(t_file *list)
+{
+    t_file *prev;
+    t_file *curr;
+    t_file *next;
+
+    prev = NULL;
+    curr = list;
+    next = list->next;
+    while (curr)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return (prev);
+}
+
+/*
+** A function which sorts a t_file structure according to flags.
+*/
+
+void    ft_sort_files(t_file **files, int flags)
+{
+    *files = ft_sort_list(*files, &ft_namecmp);
+    if ((flags & 16))
+        *files = ft_sort_list(*files, &ft_mtimecmp);
+    if ((flags & 32))
+        *files = ft_sort_list(*files, &ft_atimecmp);
+    if ((flags & 8))
+        *files = ft_reverse_list(*files);
+}
+
+/*
+** A function which sorts a 2D char
+** array of filenames alphabetically.
+*/
+
+void    ft_sort_names(char **names)
+{
+    char    *temp;
+    int     i;
+
+    i = 0;
+    while (names[i + 1])
+    {
+        if (ft_strcmp(names[i], names[i + 1]) > 0)
         {
-            swap = list->content;
-            list->content = list->next->content;
-            list->next->content = swap;
-            list = temp;
+            temp = names[i];
+            names[i] = names[i + 1];
+            names[i + 1] = temp;
+            i = 0;
         }
         else
-            list = list->next;
-    }
-    list = temp;
-}
-
-void    ft_sort(t_options *options)
-{
-    if (options->flags->time_m == 1)
-    {
-        ft_sort_list(options->files, &ft_time_m_diff);
-        ft_sort_list(options->dirs, &ft_time_m_diff);
-    }
-    else
-    {
-        ft_sort_list(options->files, &ft_strcmp);
-        ft_sort_list(options->dirs, &ft_strcmp);
-    }
-    if (options->flags->reversed == 1)
-    {
-        ft_lstreverse(&options->files);
-	    ft_lstreverse(&options->dirs);
+            i++;
     }
 }

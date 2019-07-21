@@ -5,51 +5,99 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 16:48:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 03:38:24 by sghezn           ###   ########.fr       */
+/*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
+/*   Updated: 2019/07/21 13:07:34 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_options	*ft_parse_options(int argc, char **argv)
-{
-	t_options	*options;
-	t_flags		*flags;
-	int			i;
+/*
+** A function for error handling.
+** It prints usage in case of
+** an invalid option and
+** error message otherwise.
+*/
 
-	options = (t_options*)malloc(sizeof(t_options) + 1);
-	flags = (t_flags*)malloc(sizeof(t_flags) + 1);
-	ft_memset(&flags, 0, sizeof(flags));
-	options->flags = flags;
-	i = 1;
-	while (i < argc)
-	{
-		if (argv[i][0] == '-')
-			ft_add_options(argv[i], options);
-		else if (ft_is_file_or_dir(argv[i]) == 1)
-			ft_add_filename(argv[i], options);
-		else if (ft_is_file_or_dir(argv[i]) == 2)
-			ft_add_dirname(argv[i], options);
-	}
-	if (!options->files && !options->dirs)
-		ft_add_dirname(".", options);
-	ft_lstreverse(&options->files);
-	ft_lstreverse(&options->dirs);
-	ft_sort(options);
-	return (options);
+void    ft_error(char c, int error)
+{
+    if (error == 0)
+        ft_printf("ft_ls: illegal option -- %c\nusage: ft_ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]\n", c);
+    else
+        ft_putstr((strerror(errno)));
+    exit(EXIT_FAILURE);
 }
 
-int			main(int argc, char **argv)
-{
-	t_options	*options;
+/*
+** An auxillary function that returns 1 if given
+** a t_file structure with name = "", path = "./"
+** and next = NULL and 0 otherwise.
+*/
 
-	options = ft_parse_options(argc, argv);
-	ft_print_all(options);
-	ft_free_list(options->files);
-	ft_free_list(options->dirs);
-	ft_memdel((void**)&options->path);
-	ft_memdel((void**)&options->flags);
-	ft_memdel((void**)&options);
-	return (0);
+int     ft_is_first(t_file *files)
+{
+    if (ft_strcmp(files->name, "") == 0 &&
+    ft_strcmp(files->path, "./") == 0 &&
+    !(files->next))
+        return (1);
+    return (0);
+}
+
+/*
+** A function that reads a directory
+** and returns a t_file structrure
+** with directory contents.
+*/
+
+t_file  *ft_read_dir(char *path, int flags)
+{
+    t_file          *files;
+    DIR             *dir;
+    struct dirent   *entry;
+
+    files = NULL;
+    dir = opendir(path);
+    if (flags & 128)
+        ft_add_file(path, "", &files);
+    else
+        while ((entry = readdir(dir)))
+            if (entry->d_name[0] != '.' || (flags & 4) || (flags & 64))
+                ft_add_file(path, entry->d_name, &files);
+    closedir(dir);
+    return (files);
+}
+
+
+/*
+** A function that frees a t_file structure.
+*/
+
+void    ft_free_files(t_file *files)
+{
+    while (files)
+    {
+        ft_memdel((void**)&files->name);
+        ft_memdel((void**)&files->path);
+        ft_memdel((void**)&files->stats);
+        ft_memdel((void**)&files);
+        files = files->next;
+    }
+}
+
+int	    main(int argc, char **argv)
+{
+    t_file  *file_list;
+    int     file_index;
+    int     flags;
+
+    flags = 0;
+    file_index = ft_parse_options(argc, argv, flags);
+    if (file_index == -1)
+        return (-1);
+    argc -= file_index;
+    argv += file_index;
+    file_list = ft_file_list(argc, argv, flags);
+    ft_print_all(file_list, flags);
+    ft_free_files(file_list);
+    return (0);
 }

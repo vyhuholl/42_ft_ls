@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/15 04:36:13 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/21 13:10:24 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,95 +15,75 @@
 
 # include "libft.h"
 # include <dirent.h>
+# include <errno.h>
 # include <grp.h>
 # include <pwd.h>
-# include <stdlib.h>
+# include <string.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <time.h>
-# include <unistd.h>
 
-typedef struct	s_flags
-{
-	int	long_format;
-	int	recursive;
-	int	all_files;
-	int	reversed;
-	int	time_m;
-}				t_flags;
+/*
+** Flags = -lRartufd
+** All flags are represented
+** by an integer, where n-th
+** bit is n-th flag.
+** 1: -l – long format;
+** 2: -R – recursive;
+** 4: -a – all files;
+** 8: -r – reversed;
+** 16: -t – sort by mtime;
+** 32: -u – sort by atime;
+** 64: -f – unsorted (also turns on -a option);
+** 128: -d – dirs are listed as plain files.
+*/
 
-typedef struct	s_options
-{
-	char	*path;
-	t_flags	*flags;
-	t_list	*dirs;
-	t_list	*files;
-}				t_options;
+typedef struct stat		t_stat;
+typedef struct dirent	t_dirent;
+typedef struct passwd	t_passwd;
+typedef struct group	t_group;
+
+/*
+** A linked list of files.
+** All data, except filename
+** and filepath, are stored
+** in the stat structure.
+*/
 
 typedef struct	s_file
 {
 	char			*name;
 	char			*path;
-	char			*username;
-	char			*groupname;
-	struct stat		stats;
+	t_stat			stats;
 	struct s_file	*next;
 }				t_file;
 
-typedef struct	s_dir
-{
-	char			*name;
-	t_file			*files;
-	struct s_dir	*next;
-}				t_dir;
-
-typedef struct	s_len
-{
-	int	total;
-	int	nlink_len;
-	int	user_len;
-	int	group_len;
-	int	size_len;
-	int	major_len;
-	int	minor_len;
-	int	name_len;
-}				t_len;
-
-int 		ft_max(int x, int y);
-int 		ft_nbrlen(int n);
-char    	ft_filetype(t_file *file);
-int 		ft_is_file_or_dir(char *filename);
-void    	ft_add_filename(char *filename, t_options *options);
-void    	ft_add_dirname(char *filename, t_options *options);
-void    	ft_opendir_error(char *dir);
-void    	ft_options_error(char option);
-void    	ft_add_option(char c, t_flags *flags);
-void    	ft_add_options(char *flags, t_options *options);
-t_options	*ft_parse_options(int argc, char **argv);
-int     	ft_time_m_diff(const char *file_1, const char *file_2);
-void    	ft_sort_list(t_list *list, int (*cmp)(const char*, const char*));
-void    	ft_sort(t_options *options);
-char    	*ft_username(uid_t uid);
-char    	*ft_groupname(gid_t gid);
-void    	ft_add_file(t_file *files, char *name, char *path);
-void    	ft_swap_files(t_file *file_1, t_file *file_2);
-void    	ft_sort_files(t_file *files, int (*cmp)(const char*, const char*));
-void    	ft_reverse_files(t_file *files);
-void    	ft_sort_filelist(t_file *files_list, t_flags *flags);
-void    	ft_print_files(t_list *files, t_flags *flags);
-void    	ft_print_dir(char *path, t_flags *flags);
-void    	ft_recur(char *path, t_dir *dir, t_flags *flags);
-void		ft_print_all(t_options *options);
-void        ft_compute_single_len(t_file *file, t_len *len);
-t_len		*ft_compute_len(t_file *files);
-void        ft_show_file(t_file *file, t_flags *flags, t_len *len);
-void    	ft_show_files(t_file *files, t_flags *flags);
-void    	ft_show_dir(t_dir *dir, t_flags *flags);
-void    	ft_print_time(time_t *time);
-void    	ft_printmod(t_file *file);
-void    	ft_print_long(t_file *file, t_len *len);
-void    	ft_free_list(t_list *list);
-void    	ft_free_file(t_file *file);
-void    	ft_free_dir(t_dir *dir);
+int 	ft_index(char *str, char c);
+int 	ft_parse_option(char *option, int flags);
+int 	ft_parse_options(int argc, char **argv, int flags);
+void	ft_add_file(char *path, char *name, t_file **file_list);
+void    ft_sort_names(char **names);
+t_file  *ft_file_list(int argc, char **file_names, int flags);
+int     ft_is_first(t_file *files);
+t_file  *ft_read_dir(char *path, int flags);
+int		ft_nbrlen(int n);
+int 	ft_max(int a, int b);
+int 	ft_namecmp(t_file *file_1, t_file *file_2);
+int 	ft_atimecmp(t_file *file_1, t_file *file_2);
+int 	ft_mtimecmp(t_file *file_1, t_file *file_2);
+t_file	*ft_files_swap(t_file *file_1, t_file *file_2);
+t_file	*ft_sort_list(t_file *list, int (*cmp)(t_file*, t_file*));
+t_file	*ft_reverse_list(t_file *list);
+void    ft_sort_files(t_file **files, int flags);
+void    ft_print_short(t_file *files);
+int     ft_get_width(t_file *files, int width[7]);
+void    ft_print_chmod(t_file *file);
+void    ft_print_time(t_file *file, int flags);
+void    ft_print_long_one(t_file *file, int flags, int width[7]);
+void    ft_print_long(t_file *files, int flags);
+void    ft_print_files(t_file **files, int flags);
+void    ft_print_all(t_file *file_list, int flags);
+void    ft_free_files(t_file *files);
+void	ft_error(char c, int error);
 
 #endif
