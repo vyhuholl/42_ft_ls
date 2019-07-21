@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/21 19:15:37 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/21 19:49:05 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct			s_file
 	struct s_file	*next;
 }						t_file;
 
-int						ft_parse_option(char *option, int flags);
-int						ft_parse_options(int argc, char **argv, int flags);
+int						ft_parse_option(char *option, int *flags);
+int						ft_parse_options(int argc, char **argv, int *flags);
 char					*ft_get_path(char *path, char *name);
 void					ft_add_file(char *path, char *name, t_file **file_list);
 void					ft_sort_names(char **names);

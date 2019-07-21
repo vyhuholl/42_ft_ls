@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/21 19:25:52 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/21 20:10:46 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** error is raised and -1 is returned.
 */
 
-int		ft_parse_option(char *option, int flags)
+int		ft_parse_option(char *option, int *flags)
 {
 	int i;
 	int index;
@@ -35,7 +35,7 @@ int		ft_parse_option(char *option, int flags)
 			ft_error(option[i], 0);
 			return (-1);
 		}
-		flags ^= 1 << index;
+		*flags ^= 1 << index;
 		i++;
 	}
 	return (1);
@@ -47,11 +47,11 @@ int		ft_parse_option(char *option, int flags)
 ** In case of invalid option, -1 is returned.
 */
 
-int		ft_parse_options(int argc, char **argv, int flags)
+int		ft_parse_options(int argc, char **argv, int *flags)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while (i < argc && argv[i][0] == '-')
 	{
 		if (ft_parse_option(argv[i], flags) == -1)
