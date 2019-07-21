@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/21 19:47:46 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/21 20:30:01 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int		main(int argc, char **argv)
 
 	flags = 0;
 	file_index = ft_parse_options(argc, argv, &flags);
-	ft_printf("flags: %d\n", flags);
 	if (file_index == -1)
 		return (-1);
 	argc -= file_index;
