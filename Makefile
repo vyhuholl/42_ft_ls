@@ -6,7 +6,7 @@
 #    By: sghezn <sghezn@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 17:02:44 by tsimonis          #+#    #+#              #
-#    Updated: 2019/07/20 20:56:21 by sghezn           ###   ########.fr        #
+#    Updated: 2019/07/21 13:39:39 by sghezn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,11 @@ $(OBJECTS): %.o: %.c
 	gcc $(FLAGS) -c $< -o $@ $(addprefix -I,$(INCLUDES))
 
 clean:
-	/bin/rm -rf $(OBJECTS)
 	$(MAKE) -C libft clean
+	/bin/rm -rf $(OBJECTS)
 
 fclean: clean
-	/bin/rm -rf $(NAME)
 	$(MAKE) -C libft fclean
+	/bin/rm -rf $(NAME)
 
 re: fclean all
