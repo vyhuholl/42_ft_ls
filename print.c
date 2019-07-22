@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 17:38:09 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/22 16:37:29 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/22 17:10:45 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	ft_print_files(t_file **files, int flags)
 ** Printing everything.
 */
 
-void	ft_print_all(t_file *file_list, int flags)
+void	ft_print_all(t_file *file_list, int flags, int first)
 {
 	t_file	*files;
 
-	if (!ft_is_first(file_list) && !(flags & 2))
+	if (!first && !(flags & 2))
 		return ;
 	while (file_list)
 	{
@@ -58,7 +58,7 @@ void	ft_print_all(t_file *file_list, int flags)
 			if (files)
 			{
 				ft_print_files(&files, flags);
-				ft_print_all(files, flags);
+				ft_print_all(files, flags, 0);
 				ft_free_files(&files);
 			}
 		}
