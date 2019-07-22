@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/22 14:33:11 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/22 17:36:20 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*ft_get_path(char *path, char *name)
 		fullpath[i] = path[i];
 		i++;
 	}
-	if (fullpath[i - 1] != '/')
+	if (fullpath[i - 1] != '/' && i > 0)
 		fullpath[i++] = '/';
 	while (name[j])
 	{
