@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/21 20:30:01 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/22 17:30:30 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,6 @@ void	ft_error(char c, int error)
 	else
 		ft_putstr((strerror(errno)));
 	exit(EXIT_FAILURE);
-}
-
-/*
-** An auxillary function that returns 1 if given
-** a t_file structure with name = "", path = "./"
-** and next = NULL and 0 otherwise.
-*/
-
-int		ft_is_first(t_file *files)
-{
-	if (ft_strcmp(files->name, "") == 0 &&
-	ft_strcmp(files->path, "./") == 0 &&
-	!(files->next))
-		return (1);
-	return (0);
 }
 
 /*
@@ -99,7 +84,7 @@ int		main(int argc, char **argv)
 	argc -= file_index;
 	argv += file_index;
 	file_list = ft_file_list(argc, argv, flags);
-	ft_print_all(file_list, flags);
+	ft_print_all(file_list, flags, 1);
 	ft_free_files(&file_list);
 	return (0);
 }
