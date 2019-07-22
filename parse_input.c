@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/21 21:00:42 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/22 14:17:12 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_add_file(char *path, char *name, t_file **file_list)
 	t_stat	stat;
 
 	fullpath = ft_get_path(path, name);
-	file = (t_file*)malloc(sizeof(t_file) + 1);
+	file = (t_file*)ft_memalloc(sizeof(t_file));
 	file->name = ft_strdup(name);
 	file->path = fullpath;
 	lstat(fullpath, &stat);
