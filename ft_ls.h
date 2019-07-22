@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/21 19:49:05 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/22 16:43:09 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
 # include <grp.h>
 # include <pwd.h>
 # include <string.h>
+# include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <time.h>
 
 /*
-** Flags = -lRartufd
+** Flags = -lRartufd1
 ** All flags are represented
 ** by an integer, where n-th
 ** bit is n-th flag.
@@ -32,14 +33,28 @@
 ** 2: -R – recursive;
 ** 4: -a – all files;
 ** 8: -r – reversed;
-** 16: -t – sort by mtime;
+** 16: -t – sort by mtime.
+** Bonus flags:
 ** 32: -u – sort by atime;
 ** 64: -f – unsorted (also turns on -a option);
-** 128: -d – dirs are listed as plain files.
+** 128: -d – dirs are listed as plain files;
+** 256: -1 – output is one entry per line.
 */
 
 typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
+typedef struct ttysize	t_tysize;
+
+/*
+** An auxillary structure used for columns in short format.
+** stores row and column indices for a file.
+*/
+
+typedef struct			s_point
+{
+	int	row;
+	int	col;
+}						t_point;
 
 /*
 ** A linked list of files.
@@ -74,7 +89,12 @@ t_file					*ft_sort_list(t_file *list,
 						int (*cmp)(t_file*, t_file*));
 t_file					*ft_reverse_list(t_file *list);
 void					ft_sort_files(t_file **files, int flags);
-void					ft_print_short(t_file *files);
+void					ft_print_one_per_line(t_file **files);
+void					ft_print_spaces(int n);
+int						ft_max_name_len(t_file **files);
+void					ft_print_columns(t_file *files,
+						t_point index, int max_len);
+void					ft_print_short(t_file *files, int flags);
 int						ft_get_width(t_file *files, int tab[7]);
 void					ft_print_chmod(t_file *file);
 void					ft_print_time(t_file *file, int flags);

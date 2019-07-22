@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 20:55:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/21 17:07:39 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/22 14:52:44 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	ft_print_chmod(t_file *file)
 }
 
 /*
-** A function that prints one line of the output in a long format.
+** A function that prints one line of the output in long format.
 */
 
 void	ft_print_long_one(t_file *file, int flags, int width[7])
@@ -124,7 +124,7 @@ void	ft_print_long_one(t_file *file, int flags, int width[7])
 }
 
 /*
-** A function that prints all output in a long format.
+** A function that prints all output in long format.
 */
 
 void	ft_print_long(t_file *files, int flags)

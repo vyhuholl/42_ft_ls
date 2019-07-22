@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 17:38:09 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/21 19:10:35 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/22 16:37:29 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,6 @@ void	ft_print_time(t_file *file, int flags)
 }
 
 /*
-** A function that prints output in a short format.
-*/
-
-void	ft_print_short(t_file *files)
-{
-	t_file	*temp;
-
-	temp = files;
-	while (temp)
-	{
-		ft_printf("%s\n", temp->name);
-		temp = temp->next;
-	}
-}
-
-/*
 ** A function that sorts and prints files accordingly.
 */
 
@@ -50,7 +34,7 @@ void	ft_print_files(t_file **files, int flags)
 	if (!(flags & 64))
 		ft_sort_files(files, flags);
 	if (!(flags & 1))
-		ft_print_short(*files);
+		ft_print_short(*files, flags);
 	else
 		ft_print_long(*files, flags);
 }

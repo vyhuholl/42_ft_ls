@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/22 14:17:12 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/22 14:33:11 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_parse_option(char *option, int *flags)
 	i = 1;
 	while (option[i])
 	{
-		index = ft_strchr_index("lRartudG", option[i]);
+		index = ft_strchr_index("lRartufd1", option[i]);
 		if (index == -1)
 		{
 			ft_error(option[i], 0);
