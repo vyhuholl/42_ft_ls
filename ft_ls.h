@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/22 16:43:09 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/07/22 17:25:50 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char					*ft_get_path(char *path, char *name);
 void					ft_add_file(char *path, char *name, t_file **file_list);
 void					ft_sort_names(char **names);
 t_file					*ft_file_list(int argc, char **file_names, int flags);
-int						ft_is_first(t_file *files);
 t_file					*ft_read_dir(char *path, int flags);
 int						ft_nbrlen(int n);
 int						ft_max(int a, int b);
@@ -96,13 +95,14 @@ void					ft_print_columns(t_file *files,
 						t_point index, int max_len);
 void					ft_print_short(t_file *files, int flags);
 int						ft_get_width(t_file *files, int tab[7]);
+char					ft_filetype(t_file *file);
 void					ft_print_chmod(t_file *file);
 void					ft_print_time(t_file *file, int flags);
 void					ft_print_long_one(t_file *file,
 						int flags, int width[7]);
 void					ft_print_long(t_file *files, int flags);
 void					ft_print_files(t_file **files, int flags);
-void					ft_print_all(t_file *file_list, int flags);
+void					ft_print_all(t_file *file_list, int flags, int first);
 void					ft_free_files(t_file **files);
 void					ft_error(char c, int error);
 
