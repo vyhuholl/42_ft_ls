@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 16:54:08 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/21 17:22:22 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/10 22:24:17 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ t_file	*ft_sort_list(t_file *list, int (*cmp)(t_file*, t_file*))
 {
 	if (!list)
 		return (NULL);
+	if (list->next && (*cmp)(list, list->next) > 0)
+		list = ft_files_swap(list, list->next);
+	list->next = ft_sort_list(list->next, cmp);
 	if (list->next && (*cmp)(list, list->next) > 0)
 	{
 		list = ft_files_swap(list, list->next);
