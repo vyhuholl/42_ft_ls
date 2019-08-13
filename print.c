@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 17:38:09 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/10 21:42:54 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/13 15:29:57 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_print_all(t_file *file_list, int flags, int first)
 		if (S_ISDIR(file_list->stats.st_mode))
 		{
 			if (!first)
-				ft_printf("%s\n", file_list->path);
+				ft_printf("\n%s:\n", file_list->path);
 			files = ft_read_dir(file_list->path, flags);
 			if (files)
 			{
