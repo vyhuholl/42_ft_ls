@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 19:47:19 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/10 22:25:00 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/18 14:06:15 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	ft_namecmp(t_file *file_1, t_file *file_2)
 
 int	ft_atimecmp(t_file *file_1, t_file *file_2)
 {
-	return ((int)(file_1->stats.st_atimespec.tv_sec -
-	file_2->stats.st_atimespec.tv_sec));
+	return ((int)(file_2->stats.st_atimespec.tv_sec -
+	file_1->stats.st_atimespec.tv_sec));
 }
 
 int	ft_mtimecmp(t_file *file_1, t_file *file_2)
 {
-	return ((int)(file_1->stats.st_mtimespec.tv_sec -
-	file_2->stats.st_mtimespec.tv_sec));
+	return ((int)(file_2->stats.st_mtimespec.tv_sec -
+	file_1->stats.st_mtimespec.tv_sec));
 }
 
 /*
