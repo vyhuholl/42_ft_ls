@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/22 17:36:20 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/18 13:52:16 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,21 @@ int		ft_parse_options(int argc, char **argv, int *flags)
 
 char	*ft_get_path(char *path, char *name)
 {
-	char	*fullpath;
-	int		i;
-	int		j;
+	size_t	len;
+	char	*temp;
 
-	i = 0;
-	j = 0;
-	fullpath = ft_strnew(ft_strlen(path) + ft_strlen(name) + 1);
-	while (path[i])
+	if (!path)
+		return (ft_strdup(name));
+	temp = 0;
+	if ((len = ft_strlen(path)))
 	{
-		fullpath[i] = path[i];
-		i++;
+		path = ft_strjoin(path, path[len - 1] != '/' ? "/" : "");
+		temp = path;
 	}
-	if (fullpath[i - 1] != '/' && i > 0)
-		fullpath[i++] = '/';
-	while (name[j])
-	{
-		fullpath[i] = name[j];
-		i++;
-		j++;
-	}
-	return (fullpath);
+	path = ft_strjoin(path, name);
+	if (temp)
+		free(temp);
+	return (path);
 }
 
 /*
@@ -98,15 +92,14 @@ char	*ft_get_path(char *path, char *name)
 
 void	ft_add_file(char *path, char *name, t_file **file_list)
 {
-	char	*fullpath;
 	t_file	*file;
 	t_stat	stat;
 
-	fullpath = ft_get_path(path, name);
+	path = ft_get_path(path, name);
 	file = (t_file*)ft_memalloc(sizeof(t_file));
 	file->name = ft_strdup(name);
-	file->path = fullpath;
-	lstat(fullpath, &stat);
+	file->path = path;
+	lstat(path, &stat);
 	file->stats = stat;
 	if (!*file_list)
 		*file_list = file;
