@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:38:46 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/18 11:43:26 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/18 11:49:45 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void	ft_print_short(t_file *files, int flags)
 			index.y++;
 			ptr = ptr->next;
 		}
+		index.y = (index.y % index.x ? 1 : 0) + index.y / index.x;
 		ft_print_columns(files, max_len, index);
 	}
 }
