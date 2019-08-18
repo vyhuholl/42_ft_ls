@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:38:46 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/18 12:01:03 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/18 12:07:53 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	ft_print_short(t_file *files, int flags)
 		ft_print_one_per_line(&files);
 	else
 	{
-		max_len.x = ft_max_name_len(files);
+		max_len.x = ft_max_name_len(files) + 1;
 		max_len.y = 0;
 		ioctl(0, TIOCGWINSZ, &tty_size);
 		index.x = tty_size.ts_cols / max_len.x;
