@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/22 17:25:50 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/18 11:37:02 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct ttysize	t_tysize;
 
 typedef struct			s_point
 {
-	int	row;
-	int	col;
+	int	x;
+	int	y;
 }						t_point;
 
 /*
@@ -90,9 +90,9 @@ t_file					*ft_reverse_list(t_file *list);
 void					ft_sort_files(t_file **files, int flags);
 void					ft_print_one_per_line(t_file **files);
 void					ft_print_spaces(int n);
-int						ft_max_name_len(t_file **files);
+int						ft_max_name_len(t_file *files);
 void					ft_print_columns(t_file *files,
-						t_point index, int max_len);
+						t_point max_len, t_point index);
 void					ft_print_short(t_file *files, int flags);
 int						ft_get_width(t_file *files, int tab[7]);
 char					ft_filetype(t_file *file);
