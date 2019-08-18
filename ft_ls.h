@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/18 11:37:02 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/18 14:17:00 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 ** 8: -r – reversed;
 ** 16: -t – sort by mtime.
 ** Bonus flags:
-** 32: -u – sort by atime;
+** 32: -u – use atime (instead of mtime) in -t and -l options;
 ** 64: -f – unsorted (also turns on -a option);
 ** 128: -d – dirs are listed as plain files;
 ** 256: -1 – output is one entry per line.

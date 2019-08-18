@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 16:54:08 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/10 22:24:17 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/18 14:13:40 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ void	ft_sort_files(t_file **files, int flags)
 {
 	*files = ft_sort_list(*files, &ft_namecmp);
 	if ((flags & 16))
-		*files = ft_sort_list(*files, &ft_mtimecmp);
-	if ((flags & 32))
-		*files = ft_sort_list(*files, &ft_atimecmp);
+	{
+		if ((flags & 32))
+			*files = ft_sort_list(*files, &ft_atimecmp);
+		else
+			*files = ft_sort_list(*files, &ft_mtimecmp);
+	}
 	if ((flags & 8))
 		*files = ft_reverse_list(*files);
 }
