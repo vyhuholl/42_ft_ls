@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 20:00:16 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 20:51:22 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_parse_option(char *option, int *flags)
 		index = ft_strchr_index("lRartufd1", option[i]);
 		if (index == -1)
 			ft_options_error(option[i], *flags);
-		*flags ^= 1 << index;
+		*flags |= (1 << index);
 		i++;
 	}
 }
@@ -47,6 +47,12 @@ int		ft_parse_options(int argc, char **argv, int *flags)
 {
 	int i;
 
+	*flags = 0;
+	if (ft_strcmp(argv[argc], "2>&1") == 0)
+	{
+		argc -= 1;
+		*flags |= (1 << 11);
+	}
 	i = 1;
 	while (i < argc && argv[i][0] == '-' && argv[i][1])
 	{
@@ -147,5 +153,5 @@ t_file	*ft_file_list(int argc, char **file_names, int flags)
 	}
 	if (not_found)
 		ft_not_found_error(not_found, flags);
-	return (not_found ? NULL : file_list);
+	return (file_list);
 }

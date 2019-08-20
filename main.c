@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 20:08:22 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 20:51:12 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_list	*ft_lstappend(t_list *lst, void const *content, int flags)
 	if (!lst)
 		return (new);
 	lst->next = new;
-	return (new ? lst : 0);
+	return (lst);
 }
 
 /*
@@ -81,12 +81,6 @@ int		main(int argc, char **argv)
 	int		file_index;
 	int		flags;
 
-	flags = 0;
-	if (ft_strcmp(argv[argc - 1], "2>&1") == 0)
-	{
-		argc -= 1;
-		flags = 512;
-	}
 	file_index = ft_parse_options(argc, argv, &flags);
 	argc -= file_index;
 	argv += file_index;
