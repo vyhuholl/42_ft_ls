@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 20:55:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/07/22 14:52:44 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/11 16:51:40 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_print_long_one(t_file *file, int flags, int width[7])
 	char	link[256];
 
 	ft_print_chmod(file);
-	ft_printf(" %*d %-*s  %-*s",
+	ft_printf("  %*d %-*s  %-*s",
 	width[1], file->stats.st_nlink,
 	width[2], getpwuid(file->stats.st_uid)->pw_name,
 	width[3], getgrgid(file->stats.st_gid)->gr_name);

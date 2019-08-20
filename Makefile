@@ -6,14 +6,14 @@
 #    By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 17:02:44 by tsimonis          #+#    #+#              #
-#    Updated: 2019/07/22 14:37:23 by sghezn           ###   ########.fr        #
+#    Updated: 2019/08/20 16:01:30 by sghezn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 FLAG = -Wall -Wextra -Werror
-SRC = main.c compare.c long_format.c parse_input.c print.c sort.c short_format.c
-OBJ = main.o compare.o long_format.o parse_input.o print.o sort.o short_format.o
+SRC = main.c compare.c error.c long_format.c parse_input.c print.c sort.c short_format.c
+OBJ = main.o compare.o error.o long_format.o parse_input.o print.o sort.o short_format.o
 
 all: $(NAME)
 

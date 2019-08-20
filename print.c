@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 17:38:09 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 14:32:16 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 18:34:40 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ void	ft_print_files(t_file **files, int flags)
 ** its contents, if necessary.
 */
 
-void	ft_print_dir_name(t_file *dir, int *first, int n)
+void	ft_print_dir_name(char *path, int *first, int n)
 {
 	if (n != 0 && n != 1)
 	{
 		if (*first == 2)
 		{
 			*first = 1;
-			ft_printf("%s:\n", dir->path);
+			ft_printf("%s:\n", path);
 		}
 		else
-			ft_printf("\n%s:\n", dir->path);
+			ft_printf("\n%s:\n", path);
 	}
 }
 
@@ -87,7 +87,7 @@ void	ft_print_all(t_file *files, int flags, int first, int n)
 	{
 		if (S_ISDIR(files->stats.st_mode) && (first || ft_ok(files)))
 		{
-			ft_print_dir_name(files, &first, n);
+			ft_print_dir_name(files->path, &first, n);
 			file = ft_read_dir(files->path, flags);
 			if (file)
 			{
@@ -95,6 +95,8 @@ void	ft_print_all(t_file *files, int flags, int first, int n)
 				ft_print_all(file, flags, 0, -1);
 				ft_free_files(&file);
 			}
+			if (errno == EACCES)
+				ft_permission_error(files->path, flags, first, n);
 		}
 		files = files->next;
 	}

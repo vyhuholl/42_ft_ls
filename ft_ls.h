@@ -6,12 +6,15 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 15:20:11 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 18:31:02 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
+
+# define STD_OUT 1
+# define STD_ERR 2
 
 # include "libft/includes/libft.h"
 # include <dirent.h>
@@ -72,10 +75,13 @@ typedef struct			s_file
 	struct s_file	*next;
 }						t_file;
 
-int						ft_parse_option(char *option, int *flags);
+void					ft_parse_option(char *option, int *flags);
 int						ft_parse_options(int argc, char **argv, int *flags);
-char					*ft_get_path(char *path, char *name);
-void					ft_add_file(char *path, char *name, t_file **file_list);
+char					*ft_get_path(char *path, char *name, int flags);
+t_list					*ft_lstappend(t_list *lst,
+						void const *content, int flags);
+void					ft_add_file(char *path, char *name,
+						t_file **file_list, int flags);
 void					ft_sort_names(char **names);
 t_file					*ft_file_list(int argc, char **file_names, int flags);
 t_file					*ft_read_dir(char *path, int flags);
@@ -104,10 +110,15 @@ void					ft_print_long_one(t_file *file,
 void					ft_print_long(t_file *files, int flags);
 void					ft_print_files(t_file **files, int flags);
 int						ft_ok(t_file *dir);
-void					ft_print_dir_name(t_file *dir, int *first, int n);
+void					ft_print_dir_name(char *path, int *first, int n);
 void					ft_print_all(t_file *files, int flags,
 						int first, int n);
 void					ft_free_files(t_file **files);
-void					ft_error(char c, int error);
+void					ft_memory_error(int flags);
+void					ft_options_error(char op, int flags);
+void					ft_not_found_error(t_list *files, int flags);
+void					ft_fts_error(int flags);
+void					ft_permission_error(char *path, int flags,
+						int first, int n);
 
 #endif

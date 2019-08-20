@@ -6,31 +6,11 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 15:26:51 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 18:29:44 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-/*
-** A function for error handling.
-** It prints usage in case of
-** an invalid option and
-** error message otherwise.
-*/
-
-void	ft_error(char c, int error)
-{
-	if (error == 0)
-	{
-		ft_printf("ft_ls: illegal option -- %c\n", c);
-		ft_putstr("usage: ft_ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] ");
-		ft_printf("[file ...]\n");
-	}
-	else
-		ft_putstr((strerror(errno)));
-	exit(EXIT_FAILURE);
-}
 
 /*
 ** A function that reads a directory
@@ -46,14 +26,38 @@ t_file	*ft_read_dir(char *path, int flags)
 
 	files = NULL;
 	dir = opendir(path);
+	if (!dir)
+		return (NULL);
 	if (flags & 128)
-		ft_add_file(path, "", &files);
+		ft_add_file(path, "", &files, flags);
 	else
 		while ((entry = readdir(dir)))
 			if (entry->d_name[0] != '.' || (flags & 4) || (flags & 64))
-				ft_add_file(path, entry->d_name, &files);
+				ft_add_file(path, entry->d_name, &files, flags);
 	closedir(dir);
 	return (files);
+}
+
+/*
+** An auxullary function which adds a new link
+** with the content value to a linked list lst
+** (which can be empty).
+*/
+
+t_list	*ft_lstappend(t_list *lst, void const *content, int flags)
+{
+	t_list	*new;
+
+	new = ft_lstnew(content, sizeof(content));
+	if (!new)
+	{
+		ft_memory_error(flags);
+		return (NULL);
+	}
+	if (!lst)
+		return (new);
+	lst->next = new;
+	return (lst);
 }
 
 /*
@@ -84,8 +88,6 @@ int		main(int argc, char **argv)
 		flags = 512;
 	}
 	file_index = ft_parse_options(argc, argv, &flags);
-	if (file_index == -1)
-		return (-1);
 	argc -= file_index;
 	argv += file_index;
 	file_list = ft_file_list(argc, argv, flags);
