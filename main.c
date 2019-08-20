@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/10 22:08:03 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 12:54:44 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		main(int argc, char **argv)
 	argc -= file_index;
 	argv += file_index;
 	file_list = ft_file_list(argc, argv, flags);
-	ft_print_all(file_list, flags, 1);
+	ft_print_all(file_list, flags, 2, argc);
 	ft_free_files(&file_list);
 	return (0);
 }

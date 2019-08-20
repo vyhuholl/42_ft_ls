@@ -6,11 +6,26 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 17:38:09 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/18 13:56:52 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 12:41:05 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+/*
+** An auxillary function which returns 1
+** if a directory passed as argument
+** is not named "." or "..".
+*/
+
+int		ft_ok(t_file *dir)
+{
+	if (ft_strcmp(dir->name, ".") == 0)
+		return (0);
+	if (ft_strcmp(dir->name, "..") == 0)
+		return (0);
+	return (1);
+}
 
 /*
 ** A function that prints last access/modification
@@ -40,31 +55,47 @@ void	ft_print_files(t_file **files, int flags)
 }
 
 /*
+** Printing a directory name before printing
+** its contents, if necessary.
+*/
+
+void	ft_print_dir_name(t_file *dir, int *first, int n)
+{
+	if (n > 1)
+	{
+		if (*first == 2)
+		{
+			*first = 1;
+			ft_printf("%s:\n", dir->path);
+		}
+		else
+			ft_printf("\n%s:\n", dir->path);
+	}
+}
+
+/*
 ** Printing everything.
 */
 
-void	ft_print_all(t_file *file_list, int flags, int first)
+void	ft_print_all(t_file *files, int flags, int first, int n)
 {
-	t_file	*files;
+	t_file	*file;
 
 	if (!first && !(flags & 2))
 		return ;
-	while (file_list)
+	while (files)
 	{
-		if (S_ISDIR(file_list->stats.st_mode) && (first ||
-			(ft_strcmp(file_list->name, ".") != 0 &&
-			ft_strcmp(file_list->name, "..") != 0)))
+		if (S_ISDIR(files->stats.st_mode) && (first || ft_ok(files)))
 		{
-			if (!first)
-				ft_printf("\n%s:\n", file_list->path);
-			files = ft_read_dir(file_list->path, flags);
-			if (files)
+			ft_print_dir_name(files, &first, n);
+			file = ft_read_dir(files->path, flags);
+			if (file)
 			{
-				ft_print_files(&files, flags);
-				ft_print_all(files, flags, 0);
-				ft_free_files(&files);
+				ft_print_files(&file, flags);
+				ft_print_all(file, flags, 0, -1);
+				ft_free_files(&file);
 			}
 		}
-		file_list = file_list->next;
+		files = files->next;
 	}
 }

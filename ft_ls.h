@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/18 14:17:00 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 12:40:22 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ void					ft_print_long_one(t_file *file,
 						int flags, int width[7]);
 void					ft_print_long(t_file *files, int flags);
 void					ft_print_files(t_file **files, int flags);
-void					ft_print_all(t_file *file_list, int flags, int first);
+int						ft_ok(t_file *dir);
+void					ft_print_dir_name(t_file *dir, int *first, int n);
+void					ft_print_all(t_file *files, int flags,
+						int first, int n);
 void					ft_free_files(t_file **files);
 void					ft_error(char c, int error);
 
