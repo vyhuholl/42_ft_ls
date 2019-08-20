@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 17:38:09 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 12:41:05 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 14:32:16 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_print_files(t_file **files, int flags)
 
 void	ft_print_dir_name(t_file *dir, int *first, int n)
 {
-	if (n > 1)
+	if (n != 0 && n != 1)
 	{
 		if (*first == 2)
 		{
