@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 20:08:52 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 20:23:06 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void					ft_memory_error(int flags);
 void					ft_options_error(char op, int flags);
 void					ft_not_found_error(t_list *files, int flags);
 void					ft_fts_error(int flags);
-void					ft_permission_error(char *path, int flags,
-						int first, int n);
+void					ft_permission_error(char *path, int flags);
 
 #endif
