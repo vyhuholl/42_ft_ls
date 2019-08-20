@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 12:54:44 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 15:26:51 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ int		main(int argc, char **argv)
 	int		flags;
 
 	flags = 0;
+	if (ft_strcmp(argv[argc - 1], "2>&1") == 0)
+	{
+		argc -= 1;
+		flags = 512;
+	}
 	file_index = ft_parse_options(argc, argv, &flags);
 	if (file_index == -1)
 		return (-1);

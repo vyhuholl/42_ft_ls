@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 12:40:22 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 15:20:11 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 ** 64: -f – unsorted (also turns on -a option);
 ** 128: -d – dirs are listed as plain files;
 ** 256: -1 – output is one entry per line.
+** 512: 2>&1 – stderr is redirected to stdout.
 */
 
 typedef struct stat		t_stat;
