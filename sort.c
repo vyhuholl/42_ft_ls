@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 16:54:08 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/18 14:13:40 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 20:10:08 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,23 @@ void	ft_sort_files(t_file **files, int flags)
 ** array of filenames alphabetically.
 */
 
-void	ft_sort_names(char **names)
+void	ft_sort_names(char **names, int size)
 {
 	char	*temp;
 	int		i;
+	int		j;
 
 	i = 0;
-	while (names[i + 1])
+	while (i < size)
 	{
-		if (ft_strcmp(names[i], names[i + 1]) > 0)
+		j = i - 1;
+		temp = names[i];
+		while (j >= 0 && ft_strcmp(names[j], temp) > 0)
 		{
-			temp = names[i];
-			names[i] = names[i + 1];
-			names[i + 1] = temp;
-			i = 0;
+			names[j + 1] = names[j];
+			j--;
 		}
-		else
-			i++;
+		names[j + 1] = temp;
+		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 18:31:02 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 20:08:52 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_list					*ft_lstappend(t_list *lst,
 						void const *content, int flags);
 void					ft_add_file(char *path, char *name,
 						t_file **file_list, int flags);
-void					ft_sort_names(char **names);
+void					ft_sort_names(char **names, int size);
 t_file					*ft_file_list(int argc, char **file_names, int flags);
 t_file					*ft_read_dir(char *path, int flags);
 int						ft_nbrlen(int n);
@@ -113,7 +113,7 @@ int						ft_ok(t_file *dir);
 void					ft_print_dir_name(char *path, int *first, int n);
 void					ft_print_all(t_file *files, int flags,
 						int first, int n);
-void					ft_free_files(t_file **files);
+void					ft_free_files(t_file *files);
 void					ft_memory_error(int flags);
 void					ft_options_error(char op, int flags);
 void					ft_not_found_error(t_list *files, int flags);

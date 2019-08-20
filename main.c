@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 18:29:44 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/08/20 20:08:22 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,28 @@ t_list	*ft_lstappend(t_list *lst, void const *content, int flags)
 
 	new = ft_lstnew(content, sizeof(content));
 	if (!new)
-	{
 		ft_memory_error(flags);
-		return (NULL);
-	}
 	if (!lst)
 		return (new);
 	lst->next = new;
-	return (lst);
+	return (new ? lst : 0);
 }
 
 /*
 ** A function that frees a t_file structure.
 */
 
-void	ft_free_files(t_file **files)
+void	ft_free_files(t_file *files)
 {
-	while (*files)
+	t_file	*ptr;
+
+	while (files)
 	{
-		free((*files)->name);
-		free((*files)->path);
-		free(*files);
-		*files = (*files)->next;
+		ptr = files->next;
+		free(files->name);
+		free(files->path);
+		ft_memdel((void**)&files);
+		files = ptr;
 	}
 }
 
@@ -92,6 +92,6 @@ int		main(int argc, char **argv)
 	argv += file_index;
 	file_list = ft_file_list(argc, argv, flags);
 	ft_print_all(file_list, flags, 2, argc);
-	ft_free_files(&file_list);
+	ft_free_files(file_list);
 	return (0);
 }
