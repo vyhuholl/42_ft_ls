@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/03 17:07:58 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/03 17:54:32 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ t_file	*ft_read_dir(char *path, int flags)
 
 	files = NULL;
 	dir = opendir(path);
-	if (!dir)
+	if (!dir && errno == EACCES)
+	{
+		ft_permission_error(path);
 		return (NULL);
+	}
 	if (flags & 128)
 		ft_add_file(path, "", &files);
 	else
