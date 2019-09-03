@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/03 16:27:12 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/03 17:31:24 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_parse_option(char *option, int *flags)
 	{
 		index = ft_strchr_index("lRartufd1", option[i]);
 		if (index == -1)
-			ft_options_error(option[i], *flags);
+			ft_options_error(option[i]);
 		*flags |= (1 << index);
 		i++;
 	}
@@ -48,17 +48,12 @@ int		ft_parse_options(int argc, char **argv, int *flags)
 	int i;
 
 	*flags = 0;
-	if (argv[argc] && ft_strcmp(argv[argc], "2>&1\0") == 0)
-	{
-		argc -= 1;
-		*flags |= (1 << 11);
-	}
 	i = 1;
 	while (i < argc && argv[i][0] == '-' && argv[i][1])
 	{
 		if (ft_strlen(argv[i]) == 0)
 		{
-			ft_fts_error(*flags);
+			ft_fts_error();
 			return (-1);
 		}
 		if (argv[i][1] == '-')
@@ -74,7 +69,7 @@ int		ft_parse_options(int argc, char **argv, int *flags)
 ** full path to the file.
 */
 
-char	*ft_get_path(char *path, char *name, int flags)
+char	*ft_get_path(char *path, char *name)
 {
 	size_t	len;
 	char	*temp;
@@ -91,7 +86,7 @@ char	*ft_get_path(char *path, char *name, int flags)
 	if (temp)
 		free(temp);
 	if (!path)
-		ft_memory_error(flags);
+		ft_memory_error();
 	return (path);
 }
 
@@ -100,18 +95,24 @@ char	*ft_get_path(char *path, char *name, int flags)
 ** or creates a new list if it doesn't exist.
 */
 
-void	ft_add_file(char *path, char *name, t_file **file_list, int flags)
+void	ft_add_file(char *path, char *name, t_file **file_list)
 {
 	t_file	*file;
 	t_stat	stat;
 
-	path = ft_get_path(path, name, flags);
+	path = ft_get_path(path, name);
 	file = (t_file*)ft_memalloc(sizeof(t_file));
 	file->name = ft_strdup(name);
 	file->path = path;
 	if (!file || !file->name || !file->path)
-		ft_memory_error(flags);
-	lstat(path, &stat);
+		ft_memory_error();
+	if (lstat(path, &stat) == -1)
+	{
+		if (errno == ENOMEM)
+			ft_memory_error();
+		if (errno == EACCES)
+			ft_permission_error(path);
+	}
 	file->stats = stat;
 	if (!*file_list)
 		*file_list = file;
@@ -138,20 +139,20 @@ t_file	*ft_file_list(int argc, char **file_names, int flags)
 	file_list = NULL;
 	not_found = NULL;
 	if (!argc)
-		ft_add_file(".", "", &file_list, flags);
+		ft_add_file(".", "", &file_list);
 	if (!(flags & 64) && file_names && argc)
 		ft_sort_names(file_names, argc);
 	i = -1;
 	while (++i < argc)
 	{
 		if (ft_strlen(file_names[i]) == 0)
-			ft_fts_error(flags);
+			ft_fts_error();
 		if (lstat(file_names[i], &stat) == -1 && errno == ENOENT)
-			not_found = ft_lstappend(not_found, file_names[i], flags);
+			not_found = ft_lstappend(not_found, file_names[i]);
 		else
-			ft_add_file("", file_names[i], &file_list, flags);
+			ft_add_file("", file_names[i], &file_list);
 	}
 	if (not_found)
-		ft_not_found_error(not_found, flags);
+		ft_not_found_error(not_found);
 	return (file_list);
 }

@@ -6,21 +6,19 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 20:23:06 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/03 17:41:52 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
-# define STD_OUT 1
-# define STD_ERR 2
-
 # include "libft/includes/libft.h"
 # include <dirent.h>
 # include <errno.h>
 # include <grp.h>
 # include <pwd.h>
+# include <stdio.h>
 # include <string.h>
 # include <sys/ioctl.h>
 # include <sys/stat.h>
@@ -42,7 +40,6 @@
 ** 64: -f – unsorted (also turns on -a option);
 ** 128: -d – dirs are listed as plain files;
 ** 256: -1 – output is one entry per line.
-** 512: 2>&1 – stderr is redirected to stdout.
 */
 
 typedef struct stat		t_stat;
@@ -77,11 +74,9 @@ typedef struct			s_file
 
 void					ft_parse_option(char *option, int *flags);
 int						ft_parse_options(int argc, char **argv, int *flags);
-char					*ft_get_path(char *path, char *name, int flags);
-t_list					*ft_lstappend(t_list *lst,
-						void const *content, int flags);
-void					ft_add_file(char *path, char *name,
-						t_file **file_list, int flags);
+char					*ft_get_path(char *path, char *name);
+t_list					*ft_lstappend(t_list *lst, void const *content);
+void					ft_add_file(char *path, char *name, t_file **file_list);
 void					ft_sort_names(char **names, int size);
 t_file					*ft_file_list(int argc, char **file_names, int flags);
 t_file					*ft_read_dir(char *path, int flags);
@@ -114,10 +109,10 @@ void					ft_print_dir_name(char *path, int *first, int n);
 void					ft_print_all(t_file *files, int flags,
 						int first, int n);
 void					ft_free_files(t_file *files);
-void					ft_memory_error(int flags);
-void					ft_options_error(char op, int flags);
-void					ft_not_found_error(t_list *files, int flags);
-void					ft_fts_error(int flags);
-void					ft_permission_error(char *path, int flags);
+void					ft_memory_error(void);
+void					ft_options_error(char op);
+void					ft_not_found_error(t_list *files);
+void					ft_fts_error(void);
+void					ft_permission_error(char *path);
 
 #endif

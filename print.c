@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 17:38:09 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 20:24:40 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/03 17:07:58 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_print_all(t_file *files, int flags, int first, int n)
 				ft_free_files(file);
 			}
 			if (errno == EACCES)
-				ft_permission_error(files->path, flags);
+				ft_permission_error(files->path);
 		}
 		files = files->next;
 	}

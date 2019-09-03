@@ -6,71 +6,96 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 16:02:02 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 20:28:32 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/03 17:41:52 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_memory_error(int flags)
+void	ft_memory_error(void)
 {
-	int	fd;
+	t_stat	std_out;
+	t_stat	std_err;
 
-	fd = (flags & 512) ? STD_OUT : STD_ERR;
-	ft_putstr_fd(strerror(ENOMEM), fd);
-	if (fd == STD_ERR)
+	ft_putstr_fd(strerror(ENOMEM), 2);
+	if (fstat(STDOUT_FILENO, &std_out) == 0 &&
+		fstat(STDERR_FILENO, &std_err) == 0 &&
+		S_ISCHR(std_out.st_mode) &&
+		S_ISCHR(std_err.st_mode) &&
+		(std_out.st_dev != std_err.st_dev ||
+		std_out.st_ino != std_err.st_ino))
 		exit(EXIT_FAILURE);
 }
 
-void	ft_options_error(char op, int flags)
+void	ft_options_error(char op)
 {
-	int	fd;
+	t_stat	std_out;
+	t_stat	std_err;
 
-	fd = (flags & 512) ? STD_OUT : STD_ERR;
-	ft_putstr_fd("ls: illegal option -- ", fd);
-	ft_putchar_fd(op, fd);
-	ft_putchar_fd('\n', fd);
-	ft_putstr_fd("usage: ls [-ABCFGHLOPRSTUW", fd);
-	ft_putstr_fd("abcdefghiklmnopqrstuwx1] [file ...]", fd);
-	if (fd == STD_ERR)
+	ft_putstr_fd("ls: illegal option -- ", 2);
+	ft_putchar_fd(op, 2);
+	ft_putchar_fd('\n', 2);
+	ft_putstr_fd("usage: ls [-ABCFGHLOPRSTUW", 2);
+	ft_putstr_fd("abcdefghiklmnopqrstuwx1] [file ...]", 2);
+	if (fstat(STDOUT_FILENO, &std_out) == 0 &&
+		fstat(STDERR_FILENO, &std_err) == 0 &&
+		S_ISCHR(std_out.st_mode) &&
+		S_ISCHR(std_err.st_mode) &&
+		(std_out.st_dev != std_err.st_dev ||
+		std_out.st_ino != std_err.st_ino))
 		exit(EXIT_FAILURE);
 }
 
-void	ft_not_found_error(t_list *files, int flags)
+void	ft_not_found_error(t_list *files)
 {
-	int	fd;
+	t_stat	std_out;
+	t_stat	std_err;
 
-	fd = (flags & 512) ? STD_OUT : STD_ERR;
 	ft_lstreverse(&files);
 	while (files)
 	{
-		ft_putstr_fd("ls: ", fd);
-		ft_putstr_fd(files->content, fd);
-		ft_putstr_fd(": No such file or directory\n", fd);
+		ft_putstr_fd("ls: ", 2);
+		ft_putstr_fd(files->content, 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
 		files = files->next;
 	}
-	if (fd == STD_ERR)
+	if (fstat(STDOUT_FILENO, &std_out) == 0 &&
+		fstat(STDERR_FILENO, &std_err) == 0 &&
+		S_ISCHR(std_out.st_mode) &&
+		S_ISCHR(std_err.st_mode) &&
+		(std_out.st_dev != std_err.st_dev ||
+		std_out.st_ino != std_err.st_ino))
 		exit(EXIT_FAILURE);
 }
 
-void	ft_fts_error(int flags)
+void	ft_fts_error(void)
 {
-	int	fd;
+	t_stat	std_out;
+	t_stat	std_err;
 
-	fd = (flags & 512) ? STD_OUT : STD_ERR;
-	ft_putstr_fd("ls: fts_open: No such file or directory", fd);
-	if (fd == STD_ERR)
+	ft_putstr_fd("ls: fts_open: No such file or directory", 2);
+	if (fstat(STDOUT_FILENO, &std_out) == 0 &&
+		fstat(STDERR_FILENO, &std_err) == 0 &&
+		S_ISCHR(std_out.st_mode) &&
+		S_ISCHR(std_err.st_mode) &&
+		(std_out.st_dev != std_err.st_dev ||
+		std_out.st_ino != std_err.st_ino))
 		exit(EXIT_FAILURE);
 }
 
-void	ft_permission_error(char *path, int flags)
+void	ft_permission_error(char *path)
 {
-	int	fd;
+	t_stat	std_out;
+	t_stat	std_err;
 
-	fd = (flags & 512) ? STD_OUT : STD_ERR;
-	ft_putstr_fd("ls: ", fd);
-	ft_putstr_fd(path, fd);
-	ft_putstr_fd(": Permission denied\n", fd);
-	if (fd == STD_ERR)
+	ft_putstr_fd("ls: ", 2);
+	ft_putstr_fd(path, 2);
+	ft_putstr_fd(": Permission denied\n", 2);
+	if (fstat(STDOUT_FILENO, &std_out) == 0 &&
+		fstat(STDERR_FILENO, &std_err) == 0 &&
+		S_ISCHR(std_out.st_mode) &&
+		S_ISCHR(std_err.st_mode) &&
+		(std_out.st_dev != std_err.st_dev ||
+		std_out.st_ino != std_err.st_ino))
 		exit(EXIT_FAILURE);
 }

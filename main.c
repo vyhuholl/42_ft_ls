@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 20:51:12 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/03 17:07:58 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ t_file	*ft_read_dir(char *path, int flags)
 	if (!dir)
 		return (NULL);
 	if (flags & 128)
-		ft_add_file(path, "", &files, flags);
+		ft_add_file(path, "", &files);
 	else
 		while ((entry = readdir(dir)))
 			if (entry->d_name[0] != '.' || (flags & 4) || (flags & 64))
-				ft_add_file(path, entry->d_name, &files, flags);
+				ft_add_file(path, entry->d_name, &files);
 	closedir(dir);
 	return (files);
 }
@@ -44,13 +44,13 @@ t_file	*ft_read_dir(char *path, int flags)
 ** (which can be empty).
 */
 
-t_list	*ft_lstappend(t_list *lst, void const *content, int flags)
+t_list	*ft_lstappend(t_list *lst, void const *content)
 {
 	t_list	*new;
 
 	new = ft_lstnew(content, sizeof(content));
 	if (!new)
-		ft_memory_error(flags);
+		ft_memory_error();
 	if (!lst)
 		return (new);
 	lst->next = new;
