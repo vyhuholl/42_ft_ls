@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/03 17:49:25 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/03 17:59:15 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	ft_add_file(char *path, char *name, t_file **file_list)
 		if (errno == ENOMEM)
 			ft_memory_error();
 		if (errno == EACCES)
-			ft_permission_error(path);
+			ft_permission_error(name);
 	}
 	file->stats = stat;
 	if (!*file_list)

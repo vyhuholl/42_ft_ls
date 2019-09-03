@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 16:02:02 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/03 17:41:52 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/03 17:58:51 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ void	ft_fts_error(void)
 		exit(EXIT_FAILURE);
 }
 
-void	ft_permission_error(char *path)
+void	ft_permission_error(char *name)
 {
 	t_stat	std_out;
 	t_stat	std_err;
 
 	ft_putstr_fd("ls: ", 2);
-	ft_putstr_fd(path, 2);
+	ft_putstr_fd(name, 2);
 	ft_putstr_fd(": Permission denied\n", 2);
 	if (fstat(STDOUT_FILENO, &std_out) == 0 &&
 		fstat(STDERR_FILENO, &std_err) == 0 &&

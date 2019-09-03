@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/03 17:54:32 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/03 18:00:30 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** with directory contents.
 */
 
-t_file	*ft_read_dir(char *path, int flags)
+t_file	*ft_read_dir(char *name, char *path, int flags)
 {
 	t_dirent	*entry;
 	t_file		*files;
@@ -28,7 +28,7 @@ t_file	*ft_read_dir(char *path, int flags)
 	dir = opendir(path);
 	if (!dir && errno == EACCES)
 	{
-		ft_permission_error(path);
+		ft_permission_error(name);
 		return (NULL);
 	}
 	if (flags & 128)
