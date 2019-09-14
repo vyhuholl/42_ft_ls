@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/14 16:06:14 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 16:21:46 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,8 @@ int		ft_parse_options(int argc, char **argv, int *flags)
 			ft_fts_error();
 			return (-1);
 		}
-		if (argv[i][1] == '-')
-		{
-			if (argv[i][2])
-				return (i);
+		if (argv[i][1] == '-' && !(argv[i][2]))
 			return (i + 1);
-		}
 		ft_parse_option(argv[i], flags);
 		i++;
 	}
