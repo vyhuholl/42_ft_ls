@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/14 13:10:06 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 13:35:56 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,29 +78,31 @@ void	ft_free_files(t_file *files)
 	}
 }
 
-t_file	*ft_only_files(t_file **files)
+t_file	*ft_dir_list(int argc, char **file_names)
 {
-	t_file	*file;
+	t_file	*dir_list;
+	t_stat	stat;
+	int		i;
 
-	file = NULL;
-	while (*files)
+	dir_list = NULL;
+	if (!argc)
+		ft_add_file("", ".", &dir_list);
+	i = -1;
+	while (++i < argc)
 	{
-		if (ft_filetype(*files) != 'd')
-		{
-			if (file)
-				file->next = *files;
-			else
-				file = *files;
-		}
-		files = &((*files)->next);
+		if (ft_strlen(file_names[i]) == 0)
+			ft_fts_error();
+		lstat(file_names[i], &stat);
+		if (S_ISDIR(stat.st_mode))
+			ft_add_file("", file_names[i], &dir_list);
 	}
-	return (file);
+	return (dir_list);
 }
 
 int		main(int argc, char **argv)
 {
 	t_file	*file_list;
-	t_file	*files;
+	t_file	*dir_list;
 	int		file_index;
 	int		flags;
 
@@ -108,13 +110,16 @@ int		main(int argc, char **argv)
 	argc -= file_index;
 	argv += file_index;
 	file_list = ft_file_list(argc, argv, flags);
-	files = ft_only_files(&file_list);
-	if (files)
+	dir_list = ft_dir_list(argc, argv);
+	if (file_list)
 	{
-		ft_print_files(&files, flags);
+		ft_print_files(&file_list, flags);
 		ft_putchar('\n');
 	}
-	ft_print_all(file_list, flags, 2, argc);
+	if (!(flags & 64))
+		ft_sort_files(&dir_list, flags);
+	ft_print_all(dir_list, flags, 2, argc);
 	ft_free_files(file_list);
+	ft_free_files(dir_list);
 	return (0);
 }
