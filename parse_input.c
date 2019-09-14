@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/14 13:34:07 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 15:41:27 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ t_file	*ft_file_list(int argc, char **file_names, int flags)
 {
 	t_file	*file_list;
 	t_list	*not_found;
-	t_stat	stat;
+	t_stat	stats;
 	int		i;
 
 	file_list = NULL;
@@ -145,9 +145,11 @@ t_file	*ft_file_list(int argc, char **file_names, int flags)
 	{
 		if (ft_strlen(file_names[i]) == 0)
 			ft_fts_error();
-		if (lstat(file_names[i], &stat) == -1 && errno == ENOENT)
+		if (lstat(file_names[i], &stats) == -1 && errno == ENOENT)
 			not_found = ft_lstappend(not_found, file_names[i]);
-		else if (!S_ISDIR(stat.st_mode))
+		if (S_ISLNK(stats.st_mode))
+			stat(file_names[i], &stats);
+		if (!S_ISDIR(stats.st_mode))
 			ft_add_file("", file_names[i], &file_list);
 	}
 	if (not_found)

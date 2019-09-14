@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/14 15:04:49 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 15:32:06 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_file	*ft_dir_list(int argc, char **file_names)
 {
 	t_file	*dir_list;
 	t_stat	stat;
+	char	link[256];
 	int		i;
 
 	dir_list = NULL;
@@ -95,6 +96,14 @@ t_file	*ft_dir_list(int argc, char **file_names)
 		lstat(file_names[i], &stat);
 		if (S_ISDIR(stat.st_mode))
 			ft_add_file("", file_names[i], &dir_list);
+		else if (S_ISLNK(stat.st_mode))
+		{
+			ft_bzero(link, 256);
+			readlink(file_names[i], link, 255);
+			lstat(link, &stat);
+			if (S_ISDIR(stat.st_mode))
+				ft_add_file("", link, &dir_list);
+		}
 	}
 	return (dir_list);
 }
