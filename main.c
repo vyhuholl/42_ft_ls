@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 07:58:00 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/03 18:00:30 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 12:48:34 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,29 @@ void	ft_free_files(t_file *files)
 	}
 }
 
+t_file	*ft_only_files(t_file **files)
+{
+	t_file	*file;
+
+	file = NULL;
+	while (*files)
+	{
+		if (ft_filetype(*files) != 'd')
+		{
+			if (file)
+				file->next = *files;
+			else
+				file = *files;
+		}
+		files = &((*files)->next);
+	}
+	return (file);
+}
+
 int		main(int argc, char **argv)
 {
 	t_file	*file_list;
+	t_file	*files;
 	int		file_index;
 	int		flags;
 
@@ -88,6 +108,9 @@ int		main(int argc, char **argv)
 	argc -= file_index;
 	argv += file_index;
 	file_list = ft_file_list(argc, argv, flags);
+	files = ft_only_files(&file_list);
+	ft_print_files(&files, flags);
+	ft_putchar('\n');
 	ft_print_all(file_list, flags, 2, argc);
 	ft_free_files(file_list);
 	return (0);

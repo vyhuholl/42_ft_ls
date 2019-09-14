@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/03 18:00:01 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 12:46:09 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_list					*ft_lstappend(t_list *lst, void const *content);
 void					ft_add_file(char *path, char *name, t_file **file_list);
 void					ft_sort_names(char **names, int size);
 t_file					*ft_file_list(int argc, char **file_names, int flags);
+t_file					*ft_only_files(t_file **files);
 t_file					*ft_read_dir(char *name, char *path, int flags);
 int						ft_nbrlen(int n);
 int						ft_max(int a, int b);
