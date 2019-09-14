@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 14:38:46 by sghezn            #+#    #+#             */
-/*   Updated: 2019/08/20 18:29:21 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 14:17:53 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ int		ft_max_name_len(t_file *files)
 
 void	ft_print_one_per_line(t_file **files)
 {
-	while (*files)
+	while ((*files)->next)
 	{
 		ft_printf("%s\n", (*files)->name);
 		*files = (*files)->next;
 	}
+	ft_printf("%s", (*files)->name);
 }
 
 /*
