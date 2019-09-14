@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 10:04:21 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/14 16:21:46 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 16:39:53 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	ft_add_file(char *path, char *name, t_file **file_list)
 ** t_file from an array of filenames.
 */
 
-t_file	*ft_file_list(int argc, char **file_names, int flags)
+t_file	*ft_file_list(int argc, char **file_names)
 {
 	t_file	*file_list;
 	t_list	*not_found;
@@ -138,8 +138,6 @@ t_file	*ft_file_list(int argc, char **file_names, int flags)
 
 	file_list = NULL;
 	not_found = NULL;
-	if (!(flags & 64) && file_names && argc)
-		ft_sort_names(file_names, argc);
 	i = -1;
 	while (++i < argc)
 	{
@@ -147,10 +145,13 @@ t_file	*ft_file_list(int argc, char **file_names, int flags)
 			ft_fts_error();
 		if (lstat(file_names[i], &stats) == -1 && errno == ENOENT)
 			not_found = ft_lstappend(not_found, file_names[i]);
-		if (S_ISLNK(stats.st_mode))
-			stat(file_names[i], &stats);
-		if (!S_ISDIR(stats.st_mode))
-			ft_add_file("", file_names[i], &file_list);
+		else
+		{
+			if (S_ISLNK(stats.st_mode))
+				stat(file_names[i], &stats);
+			if (!S_ISDIR(stats.st_mode))
+				ft_add_file("", file_names[i], &file_list);
+		}
 	}
 	if (not_found)
 		ft_not_found_error(not_found);

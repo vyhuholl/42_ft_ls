@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 16:02:02 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/14 16:17:19 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 16:33:39 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_options_error(char op)
 
 void	ft_not_found_error(t_list *files)
 {
-	ft_lstreverse(&files);
 	while (files)
 	{
 		ft_putstr_fd("ls: ", 2);
@@ -40,8 +39,6 @@ void	ft_not_found_error(t_list *files)
 		ft_putstr_fd(": No such file or directory\n", 2);
 		files = files->next;
 	}
-	if (STDOUT_FILENO != STDERR_FILENO)
-		exit(EXIT_FAILURE);
 }
 
 void	ft_fts_error(void)
