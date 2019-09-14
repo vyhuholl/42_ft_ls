@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 16:51:16 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/14 12:46:09 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 13:07:38 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int						ft_mtimecmp(t_file *file_1, t_file *file_2);
 t_file					*ft_files_swap(t_file *file_1, t_file *file_2);
 t_file					*ft_sort_list(t_file *list,
 						int (*cmp)(t_file*, t_file*));
-t_file					*ft_reverse_list(t_file *list);
+void					ft_reverse_list(t_file **file);
 void					ft_sort_files(t_file **files, int flags);
 void					ft_print_one_per_line(t_file **files);
 void					ft_print_spaces(int n);
