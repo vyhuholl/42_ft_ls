@@ -6,7 +6,7 @@
 /*   By: sghezn <sghezn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 20:55:52 by sghezn            #+#    #+#             */
-/*   Updated: 2019/09/14 14:08:03 by sghezn           ###   ########.fr       */
+/*   Updated: 2019/09/14 15:08:23 by sghezn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,12 @@ void	ft_print_long_one(t_file *file, int flags, int width[7])
 								width[6], minor(file->stats.st_rdev));
 	ft_print_time(file, flags);
 	if (!S_ISLNK(file->stats.st_mode))
-		ft_printf(" %s", file->name);
+		ft_printf(" %s\n", file->name);
 	else
 	{
 		ft_bzero(link, 256);
 		readlink(file->path, link, 255);
-		ft_printf(" %s -> %s", file->name, link);
+		ft_printf(" %s -> %s\n", file->name, link);
 	}
 }
 
@@ -139,13 +139,10 @@ void	ft_print_long(t_file *files, int flags)
 	if (files->next)
 	{
 		ft_printf("total %d\n", blocks);
-		while (files)
-		{
-			ft_print_long_one(files, flags, width);
-			ft_putchar('\n');
-			files = files->next;
-		}
 	}
-	else
+	while (files)
+	{
 		ft_print_long_one(files, flags, width);
+		files = files->next;
+	}
 }
